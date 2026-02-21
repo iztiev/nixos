@@ -25,9 +25,9 @@
     enable = true;
     profiles.default = {
       isDefault = true;
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
         ublock-origin
-        styl-us
+#        styl-us
       ];
       settings = {
         "browser.contentblocking.category" = "strict";

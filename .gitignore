@@ -1,1 +1,3 @@
 .idea
+nixos/hardware-configuration.nix
+

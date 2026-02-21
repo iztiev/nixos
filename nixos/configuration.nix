@@ -12,6 +12,7 @@
   boot.loader.systemd-boot.editor = false;
 
   # LUKS tuning for NVMe SSDs
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/2029b089-eab2-4923-95ef-b94b757f5f74";
   boot.initrd.luks.devices."cryptroot".allowDiscards = true;
   boot.initrd.luks.devices."cryptroot".bypassWorkqueues = true;
 
@@ -22,6 +23,9 @@
   # ── Networking ──
   networking.hostName = "rhea";
   networking.networkmanager.enable = true;
+
+  # ── ZeroTier ──
+  services.zerotierone.enable = true;
 
   # ── Locale & Time ──
   time.timeZone = "Asia/Almaty";

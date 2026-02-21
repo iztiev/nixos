@@ -1,11 +1,11 @@
 {
-  description = "NixOS 25.11 — RTX 4080 Super, Secure Boot, KDE Plasma Wayland";
+  description = "NixOS unstable — RTX 4080 Super, Secure Boot, KDE Plasma Wayland";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -21,19 +21,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    izosevka.url = "github:iztiev/Izosevka";
+#    izosevka.url = "github:iztiev/Izosevka";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, lanzaboote, nix-flatpak, firefox-addons, ... }: {
     nixosConfigurations.rhea = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        { nixpkgs.hostPlatform = "x86_64-linux"; }
         ./nixos/hardware-configuration.nix
         ./nixos/configuration.nix
         ./modules/nixos
 
-        inputs.izosevka.nixosModules.default
+#        inputs.izosevka.nixosModules.default
 
         lanzaboote.nixosModules.lanzaboote
         nix-flatpak.nixosModules.nix-flatpak

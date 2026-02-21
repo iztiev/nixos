@@ -62,9 +62,73 @@
     };
   };
 
+  # ── Desktop Entries for JetBrains IDEs ──
+  # Fix taskbar icons by creating custom desktop entries
+  xdg.desktopEntries = {
+    pycharm = {
+      name = "PyCharm";
+      genericName = "Python IDE";
+      comment = "Python IDE from JetBrains";
+      exec = "pycharm %f";
+      icon = "pycharm";
+      terminal = false;
+      categories = [ "Development" "IDE" ];
+      type = "Application";
+      startupNotify = true;
+      settings = {
+        StartupWMClass = "jetbrains-pycharm";
+      };
+    };
+
+    webstorm = {
+      name = "WebStorm";
+      genericName = "JavaScript IDE";
+      comment = "JavaScript IDE from JetBrains";
+      exec = "webstorm %f";
+      icon = "webstorm";
+      terminal = false;
+      categories = [ "Development" "IDE" ];
+      type = "Application";
+      startupNotify = true;
+      settings = {
+        StartupWMClass = "jetbrains-webstorm";
+      };
+    };
+  };
+
   # ── KDE Plasma Configuration ──
   programs.plasma = {
     enable = true;
+
+    # Panel configuration with pinned applications
+    panels = [
+      {
+        location = "bottom";
+        height = 66;  # 50% larger than default (44px * 1.5 = 66px)
+        widgets = [
+          "org.kde.plasma.kickoff"  # Application launcher
+          {
+            name = "org.kde.plasma.icontasks";  # Task Manager
+            config = {
+              General = {
+                launchers = [
+                  "applications:org.kde.dolphin.desktop"
+                  "applications:org.kde.konsole.desktop"
+                  "applications:firefox.desktop"
+                  "applications:chromium-browser.desktop"
+                  "applications:pycharm.desktop"
+                  "applications:webstorm.desktop"
+                ];
+              };
+            };
+          }
+          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.systemtray"
+          "org.kde.plasma.digitalclock"
+          "org.kde.plasma.showdesktop"
+        ];
+      }
+    ];
 
     # Configure scaling through config files
     # Adjust values as needed: 1 = 100%, 1.25 = 125%, 1.5 = 150%, 2 = 200%
@@ -95,6 +159,7 @@
       ksmserverrc = {
         General = {
           loginMode = "emptySession";
+          confirmLogout = false;  # Don't show confirmation popup when logging out
         };
       };
     };

@@ -380,7 +380,7 @@
     "cosmic/com.system76.CosmicPanel.Panel/v1/opacity" = { force = true; text = "1.0"; };
     "cosmic/com.system76.CosmicPanel.Panel/v1/background" = { force = true; text = "ThemeDefault"; };
     "cosmic/com.system76.CosmicPanel.Panel/v1/spacing" = { force = true; text = "0"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/expand_to_edges" = { force = true; text = "false"; };
+    "cosmic/com.system76.CosmicPanel.Panel/v1/expand_to_edges" = { force = true; text = "true"; };
     "cosmic/com.system76.CosmicPanel.Panel/v1/exclusive_zone" = { force = true; text = "true"; };
     "cosmic/com.system76.CosmicPanel.Panel/v1/border_radius" = { force = true; text = "0"; };
     "cosmic/com.system76.CosmicPanel.Panel/v1/layer" = { force = true; text = "Top"; };

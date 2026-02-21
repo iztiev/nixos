@@ -47,10 +47,22 @@ with lib;
     # Enable 32-bit graphics driver support for gaming
     hardware.graphics.enable32Bit = true;
 
+    # ── Gaming Performance ──
+    programs.gamemode.enable = true;  # CPU governor optimization for games
+
     # ── Additional Gaming Packages ──
     environment.systemPackages = with pkgs; [
-      steam-run  # Run non-Steam games in Steam runtime environment
-      lutris     # Open gaming platform for managing games from multiple sources
+      steam-run   # Run non-Steam games in Steam runtime environment
+      lutris      # Open gaming platform for managing games from multiple sources
+      gamescope   # Wayland micro-compositor for better fullscreen support
+      mangohud    # Gaming performance overlay
     ];
+
+    # ── Steam Environment Variables ──
+    # Force Steam to use Wayland with better fullscreen handling
+    environment.sessionVariables = {
+      SDL_VIDEODRIVER = "wayland";
+      ENABLE_VKBASALT = "1";
+    };
   };
 }

@@ -42,9 +42,9 @@
   # ── Git ──
   programs.git = {
     enable = true;
-    userName = "Timur Izmagambetov";
-    userEmail = "iztiev@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "Timur Izmagambetov";
+      user.email = "iztiev@gmail.com";
       init.defaultBranch = "main";
       pull.rebase = true;
     };
@@ -55,8 +55,8 @@
     enable = true;
     enableCompletion = true;
     shellAliases = {
-      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#rhea";
-      update = "nix flake update --flake /etc/nixos";
+      rebuild = "sudo nixos-rebuild switch --flake ~/nixos#rhea";
+      update = "nix flake update --flake ~/nixos";
     };
   };
 

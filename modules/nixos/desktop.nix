@@ -9,6 +9,12 @@
     wayland.enable = true; # Run SDDM itself on Wayland
   };
 
+  # ── Auto-login ──
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "iztiev";
+  };
+
   # ── Exclude unwanted default KDE packages ──
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     elisa    # Music player

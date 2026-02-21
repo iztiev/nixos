@@ -4,5 +4,6 @@
     ./kde.nix
     ./cosmic.nix
     ./secure-boot.nix
+    ./steam.nix
   ];
 }

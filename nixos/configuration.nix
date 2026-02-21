@@ -76,6 +76,9 @@
     };
   };
 
+  # ── Steam ──
+  services.steam.enable = true;
+
   # ── Users ──
   users.users.iztiev = {
     isNormalUser = true;

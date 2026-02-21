@@ -51,8 +51,20 @@
   # ── Electron/Chromium Wayland support ──
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # ── KDE Plasma 6 Desktop ──
-  services.kde = {
+  # ── Desktop Environment ──
+  # Choose one: KDE Plasma 6 or COSMIC
+
+  # KDE Plasma 6 (disabled)
+  # services.kde = {
+  #   enable = true;
+  #   autoLogin = {
+  #     enable = true;
+  #     user = "iztiev";
+  #   };
+  # };
+
+  # COSMIC Desktop
+  services.cosmic = {
     enable = true;
     autoLogin = {
       enable = true;

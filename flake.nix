@@ -21,10 +21,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
 #    izosevka.url = "github:iztiev/Izosevka";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, lanzaboote, nix-flatpak, firefox-addons, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, lanzaboote, nix-flatpak, firefox-addons, plasma-manager, ... }: {
     nixosConfigurations.rhea = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -44,6 +50,7 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.iztiev = import ./home-manager/home.nix;
+          home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
         }
       ];
     };

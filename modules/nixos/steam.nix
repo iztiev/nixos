@@ -50,6 +50,7 @@ with lib;
     # ── Additional Gaming Packages ──
     environment.systemPackages = with pkgs; [
       steam-run  # Run non-Steam games in Steam runtime environment
+      lutris     # Open gaming platform for managing games from multiple sources
     ];
   };
 }

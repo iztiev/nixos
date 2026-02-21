@@ -23,6 +23,10 @@
   # ── Networking ──
   networking.hostName = "rhea";
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";  # Use iwd backend
+  networking.wireless.enable = false;  # Disable wpa_supplicant
+  # Disable WiFi by blacklisting common WiFi kernel modules
+  boot.blacklistedKernelModules = [ "iwlwifi" "iwlmvm" "ath9k" "ath10k" "rtw88" "mt76" ];
 
   # ── ZeroTier ──
   services.zerotierone.enable = true;

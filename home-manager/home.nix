@@ -3,12 +3,19 @@
   home.username = "iztiev";
   home.homeDirectory = "/home/iztiev";
 
+  # ── Environment Variables ──
+  home.sessionVariables = {
+    EDITOR = "code";
+    VISUAL = "code";
+  };
+
   # ── User Packages ──
   home.packages = with pkgs; [
     # Browsers
     chromium
 
     # Development
+    vscode
     claude-code
     jetbrains.pycharm
     jetbrains.webstorm
@@ -365,8 +372,13 @@
       text = ''
         [
           "firefox.desktop",
+          "code.desktop",
           "org.gnome.Nautilus.desktop",
           "org.gnome.Console.desktop",
+          "com.slack.Slack.desktop",
+          "org.telegram.desktop.desktop",
+          "pycharm.desktop",
+          "webstorm.desktop",
         ]
       '';
     };

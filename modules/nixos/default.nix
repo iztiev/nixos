@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./nvidia.nix
-    ./desktop.nix
+    ./kde.nix
     ./secure-boot.nix
   ];
 }

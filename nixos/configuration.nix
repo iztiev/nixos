@@ -51,13 +51,13 @@
   # ── Electron/Chromium Wayland support ──
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # ── Qt/KDE Scaling (Wayland) ──
-  environment.sessionVariables = {
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";  # Enable automatic scaling
-    QT_SCALE_FACTOR = "1";              # 1 = 100%, 1.25 = 125%, 1.5 = 150%
-    QT_SCREEN_SCALE_FACTORS = "1";      # Per-screen scaling
-    GDK_SCALE = "1";                    # GTK apps scaling (integer only)
-    GDK_DPI_SCALE = "1";                # GTK DPI scaling (fine-tune)
+  # ── KDE Plasma 6 Desktop ──
+  services.kde = {
+    enable = true;
+    autoLogin = {
+      enable = true;
+      user = "iztiev";
+    };
   };
 
   # ── Users ──

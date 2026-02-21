@@ -15,14 +15,19 @@ nixos/
   hardware-configuration.nix    # Machine-specific (generated on target, not committed)
 modules/
   nixos/
-    default.nix                 # Imports nvidia + desktop + secure-boot
+    default.nix                 # Imports nvidia + desktop + secure-boot + secrets
     nvidia.nix                  # NVIDIA RTX 4080 Super, open module, Wayland vars
     desktop.nix                 # KDE Plasma 6, SDDM (Wayland)
     secure-boot.nix             # lanzaboote replaces systemd-boot
+    secrets.nix                 # sops-nix: iztiev password via hashedPasswordFile
   home-manager/
     default.nix                 # Empty — reserved for shared HM modules
 home-manager/
   home.nix                      # iztiev user: packages, Firefox, git, bash
+secrets/
+  secrets.yaml                  # SOPS-encrypted secrets (gitignored, per-machine)
+  secrets.yaml.example          # Unencrypted template showing required keys
+.sops.yaml                      # sops key config (age key from SSH host key)
 overlays/default.nix            # Custom nixpkgs overlays (empty stub)
 pkgs/default.nix                # Custom derivations (empty stub)
 ```
@@ -131,7 +136,61 @@ Copy the generated hardware config into the repo:
 sudo nixos-generate-config --show-hardware-config | sudo tee /etc/nixos/nixos/hardware-configuration.nix
 ```
 
-Build and switch (lanzaboote is active in this config — see **Secure Boot setup** below before running):
+Before switching, complete **Secrets setup** and **Secure Boot setup** below — both are required for the first flake build.
+
+---
+
+## Secrets setup (sops-nix)
+
+User passwords are managed as SOPS-encrypted secrets rather than plain `initialPassword`. The secrets file is per-machine and gitignored; the age encryption key is derived from the machine's own SSH host key (generated automatically by `nixos-install`).
+
+### 1. Get the machine's age public key
+
+```bash
+nix-shell -p ssh-to-age --run 'ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub'
+```
+
+Copy the output (starts with `age1...`).
+
+### 2. Update .sops.yaml
+
+Edit `/etc/nixos/.sops.yaml` and replace `age1REPLACEME` with the key you just copied:
+
+```yaml
+keys:
+  - &rhea age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+### 3. Create and encrypt the secrets file
+
+Generate a SHA-512 password hash:
+
+```bash
+nix-shell -p mkpasswd --run 'mkpasswd -m sha-512'
+```
+
+Create the encrypted secrets file (sops opens `$EDITOR`):
+
+```bash
+cd /etc/nixos
+nix-shell -p sops --run 'sops secrets/secrets.yaml'
+```
+
+Add this content (paste your hash from the previous step):
+
+```yaml
+iztiev/password: '$6$rounds=656000$yoursalthere$hashhere'
+```
+
+Save and exit — sops encrypts the file automatically. Commit it:
+
+```bash
+cd /etc/nixos
+git add .sops.yaml secrets/secrets.yaml
+git commit -m "Add sops config and encrypted secrets"
+```
+
+### 4. Switch to the flake config
 
 ```bash
 sudo nixos-rebuild switch --flake /etc/nixos#rhea

@@ -22,6 +22,11 @@
     };
 
     izosevka.url = "github:iztiev/Izosevka";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, lanzaboote, nix-flatpak, firefox-addons, ... }: {
@@ -34,6 +39,7 @@
         ./modules/nixos
 
         inputs.izosevka.nixosModules.default
+        inputs.sops-nix.nixosModules.sops
 
         lanzaboote.nixosModules.lanzaboote
         nix-flatpak.nixosModules.nix-flatpak

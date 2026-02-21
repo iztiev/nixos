@@ -23,6 +23,12 @@ with lib;
       default = false;
       description = "Enable Gamescope session for Steam Big Picture mode";
     };
+
+    protonGE = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable GE-Proton (GloriousEggroll's custom Proton build)";
+    };
   };
 
   config = mkIf config.services.steam.enable {
@@ -32,6 +38,9 @@ with lib;
       remotePlay.openFirewall = config.services.steam.remotePlay;
       dedicatedServer.openFirewall = config.services.steam.dedicatedServer;
       gamescopeSession.enable = config.services.steam.gamescopeSession;
+      extraCompatPackages = mkIf config.services.steam.protonGE [
+        pkgs.proton-ge-bin
+      ];
     };
 
     # ── Hardware Support ──

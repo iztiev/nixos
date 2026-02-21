@@ -1031,7 +1031,7 @@
             click_method: Clickfinger,
             scroll_method: TwoFinger,
             tap_to_click: true,
-            natural_scroll: false,
+            natural_scroll: true,
             accel_profile: Adaptive,
             accel_speed: 0.0,
           ),

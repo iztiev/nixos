@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "nixos-best-practices": {
+      "source": "lihaoze123/my-skills",
+      "sourceType": "github",
+      "computedHash": "4667cb5f7e5cc14e84b0b8fc63e763be92b538bbbee74191e5b302ba42ff82be"
+    }
+  }
+}

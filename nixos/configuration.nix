@@ -41,7 +41,23 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    # Disable suspend-on-idle to prevent audio devices from sleeping
+    wireplumber.configPackages = [
+      (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-disable-suspension.conf" ''
+        wireplumber.profiles = {
+          main = {
+            hooks.node.suspend = disabled
+          }
+        }
+      '')
+    ];
   };
+
+  # Disable ALSA power saving (prevents hardware from sleeping)
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel power_save=0
+    options snd_ac97_codec power_save=0
+  '';
 
   # ── Flatpak ──
   services.flatpak.enable = true;

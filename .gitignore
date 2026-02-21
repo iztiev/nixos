@@ -1,5 +1,1 @@
 .idea
-
-# Machine-specific secrets — encrypted with sops per machine, not committed.
-# Create with: sops secrets/secrets.yaml
-secrets/secrets.yaml

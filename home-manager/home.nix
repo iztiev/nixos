@@ -7,6 +7,8 @@
   home.sessionVariables = {
     EDITOR = "code";
     VISUAL = "code";
+    # Fix cursor size in XWayland apps (PyCharm, WebStorm, etc.)
+    XCURSOR_SIZE = "24";  # Standard cursor size (24 or 32 typical)
   };
 
   # ── User Packages ──
@@ -42,6 +44,13 @@
         "browser.newtabpage.activity-stream.feeds.telemetry" = false;
         "browser.ping-centre.telemetry" = false;
         "toolkit.telemetry.enabled" = false;
+
+        # Zoom settings
+        "layout.css.devPixelsPerPx" = "1.0";
+        "browser.zoom.siteSpecific" = true;  # Remember per-site zoom levels
+        "browser.zoom.full" = true;          # Full page zoom (not text-only)
+        "zoom.defaultPercent" = 150;
+        "zoom.default" = 1.5;
       };
     };
   };

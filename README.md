@@ -119,22 +119,50 @@ Log in as `iztiev` and change your password:
 passwd
 ```
 
-### 6. Clone this repo and switch to the flake config
+### 6. Set up sops-nix age key
+
+This repository uses sops-nix for secrets management. Before building the system, create the age key file:
 
 ```bash
-sudo git clone https://github.com/iztiev/nixos /etc/nixos
+# Create the sops-nix directory
+sudo mkdir -p /var/lib/sops-nix
+
+# Create the key file with your age secret key
+# Replace <YOUR_AGE_SECRET_KEY> with your actual age secret key
+sudo tee /var/lib/sops-nix/key.txt > /dev/null <<EOF
+<YOUR_AGE_SECRET_KEY>
+EOF
+
+# Set proper ownership and permissions
+sudo chown root:root /var/lib/sops-nix/key.txt
+sudo chmod 0600 /var/lib/sops-nix/key.txt
+```
+
+**Note:** If you don't have an age key yet, generate one with:
+```bash
+nix shell nixpkgs#age --command age-keygen
+```
+
+The public key will be printed to stdout. The private key is what goes in `/var/lib/sops-nix/key.txt`.
+
+**After the first rebuild:** The system will automatically copy this key to `/home/iztiev/.config/sops/age/keys.txt` with proper ownership and permissions for user-level sops operations.
+
+### 7. Clone this repo and switch to the flake config
+
+```bash
+sudo git clone https://github.com/iztiev/nixos /home/iztiev/nixos
 ```
 
 Copy the generated hardware config into the repo:
 
 ```bash
-sudo nixos-generate-config --show-hardware-config | sudo tee /etc/nixos/nixos/hardware-configuration.nix
+sudo nixos-generate-config --show-hardware-config | sudo tee /home/iztiev/nixos/nixos/hardware-configuration.nix
 ```
 
 Build and switch (lanzaboote is active in this config — see **Secure Boot setup** below before running):
 
 ```bash
-sudo nixos-rebuild switch --flake /etc/nixos#rhea
+sudo nixos-rebuild switch --flake /home/iztiev/nixos#rhea
 ```
 
 ---

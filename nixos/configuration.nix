@@ -100,9 +100,49 @@
   # ── Steam ──
   services.steam.enable = true;
 
+  # ── Sops Configuration ──
+  sops.secrets.iztiev-password.neededForUsers = true;
+
+  # Copy sops age key to user directory for home-manager sops access
+  systemd.services.copy-sops-key-to-user = {
+    description = "Copy sops age key to iztiev user directory";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "local-fs.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      USER_SOPS_DIR="/home/iztiev/.config/sops/age"
+      USER_KEY_FILE="$USER_SOPS_DIR/keys.txt"
+      SYSTEM_KEY_FILE="/var/lib/sops-nix/key.txt"
+
+      if [ -f "$SYSTEM_KEY_FILE" ]; then
+        # Create directory if it doesn't exist
+        mkdir -p "$USER_SOPS_DIR"
+
+        # Copy the key file
+        cp "$SYSTEM_KEY_FILE" "$USER_KEY_FILE"
+
+        # Set ownership and permissions
+        chown iztiev:users "$USER_SOPS_DIR"
+        chown iztiev:users "$USER_KEY_FILE"
+        chmod 0700 "$USER_SOPS_DIR"
+        chmod 0600 "$USER_KEY_FILE"
+
+        echo "Sops key copied to user directory"
+      else
+        echo "Warning: System sops key not found at $SYSTEM_KEY_FILE"
+      fi
+    '';
+  };
+
+  users.mutableUsers = false;
+
   # ── Users ──
   users.users.iztiev = {
     isNormalUser = true;
+    hashedPasswordFile = config.sops.secrets.iztiev-password.path;
     extraGroups = [ "networkmanager" "wheel" ];
   };
 

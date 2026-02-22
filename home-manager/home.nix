@@ -1047,9 +1047,18 @@
             accel_profile: Adaptive,
             accel_speed: 0.0,
           ),
+          pointer: (
+            natural_scroll: true,
+            accel_profile: Flat,
+            accel_speed: 0.0,
+          ),
         )
       '';
     };
+
+    # Input default settings - NOTE: Removed from declarative management
+    # because COSMIC overwrites this file at runtime
+    # See home.activation.cosmicInputSettings below for the actual implementation
 
     # ── Accessibility Settings ──
     "cosmic/com.system76.CosmicSettings.Accessibility/v1/config" = {
@@ -1066,6 +1075,31 @@
       '';
     };
   };
+
+  # ── COSMIC Input Settings via Activation Script ──
+  # COSMIC overwrites config files at runtime, breaking symlinks
+  # So we use activation scripts to copy (not symlink) the settings on each rebuild
+  home.activation.cosmicInputSettings = config.lib.dag.entryAfter ["writeBoundary"] ''
+    INPUT_DEFAULT="$HOME/.config/cosmic/com.system76.CosmicComp/v1/input_default"
+    mkdir -p "$(dirname "$INPUT_DEFAULT")"
+
+    cat > "$INPUT_DEFAULT" <<'EOF'
+(
+    state: Enabled,
+    scroll_config: Some((
+        method: Some(TwoFinger),
+        natural_scroll: Some(true),
+    )),
+    acceleration: Some((
+        profile: Some(Flat),
+        speed: 0.0,
+    )),
+)
+EOF
+
+    $DRY_RUN_CMD chmod 644 "$INPUT_DEFAULT"
+    echo "Applied COSMIC input settings (natural scroll + flat acceleration)"
+  '';
 
   home.stateVersion = "25.11";
 }

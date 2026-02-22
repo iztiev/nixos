@@ -9,6 +9,8 @@
     VISUAL = "code";
     # Fix cursor size in XWayland apps (PyCharm, WebStorm, etc.)
     XCURSOR_SIZE = "24";  # Standard cursor size (24 or 32 typical)
+    # Disable SSH agent to prevent key caching
+    SSH_AUTH_SOCK = "";
   };
 
   # ── User Packages ──
@@ -100,6 +102,16 @@
       update = "nix flake update --flake ~/nixos";
       cleanup = "sudo nix-env --delete-generations +3 --profile /nix/var/nix/profiles/system && nix-env --delete-generations +3 && sudo nix-collect-garbage -d";
     };
+  };
+
+  # ── Disable SSH Agent ──
+  # Prevents gcr-ssh-agent from starting and caching SSH keys
+  # You will be prompted for your passphrase on every SSH use
+  systemd.user.services.gcr-ssh-agent = {
+    Unit.RefuseManualStart = true;
+  };
+  systemd.user.sockets.gcr-ssh-agent = {
+    Unit.RefuseManualStart = true;
   };
 
   # ── Desktop Entries for JetBrains IDEs ──

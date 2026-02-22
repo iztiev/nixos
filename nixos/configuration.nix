@@ -6,8 +6,7 @@
 
   # ── Boot ──
   boot.loader.efi.canTouchEfiVariables = true;
-  # systemd-boot is the default; secure-boot.nix overrides it with lanzaboote
-  boot.loader.systemd-boot.enable = lib.mkDefault true;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 20;
   boot.loader.systemd-boot.editor = false;
 
@@ -86,10 +85,10 @@
   # COSMIC Desktop
   services.cosmic = {
     enable = true;
-    autoLogin = {
-      enable = true;
-      user = "iztiev";
-    };
+    # autoLogin = {
+    #   enable = true;
+    #   user = "iztiev";
+    # };
   };
 
   # ── Steam ──
@@ -107,7 +106,6 @@
     git
     wget
     curl
-    sbctl               # Secure Boot key management
     nvidia-vaapi-driver # Hardware video acceleration
   ];
 

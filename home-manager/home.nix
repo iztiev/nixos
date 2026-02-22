@@ -13,6 +13,11 @@
     SSH_AUTH_SOCK = "";
   };
 
+  # ── Directory Structure ──
+  # Ensure Projects directory structure exists
+  home.file."Projects/github/.keep".text = "";
+  home.file."Projects/local/.keep".text = "";
+
   # ── User Packages ──
   home.packages = with pkgs; [
     # Browsers

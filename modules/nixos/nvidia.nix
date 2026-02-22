@@ -19,9 +19,10 @@
     # Power management (disable for desktops; only useful for laptops)
     powerManagement.enable = false;
     powerManagement.finegrained = false;
+    nvidiaSettings = true;
 
     # Driver branch: stable (default), beta, or production
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
   # ── Wayland + NVIDIA environment variables ──

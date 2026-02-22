@@ -6,5 +6,6 @@
     # ./secure-boot.nix
     ./steam.nix
     ./printer-scanner.nix
+    ./docker.nix
   ];
 }

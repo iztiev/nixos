@@ -30,6 +30,12 @@
   # ── ZeroTier ──
   services.zerotierone.enable = true;
 
+  # ── Docker ──
+  services.docker-custom = {
+    enable = true;
+    useNvidiaGpu = true;
+  };
+
   # ── Locale & Time ──
   time.timeZone = "Asia/Almaty";
   i18n.defaultLocale = "en_US.UTF-8";

@@ -1,5 +1,5 @@
 {
-  description = "NixOS unstable — RTX 4080 Super, Secure Boot, KDE Plasma Wayland";
+  description = "NixOS RHEA";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -27,6 +27,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
 #    izosevka.url = "github:iztiev/Izosevka";
   };
 
@@ -43,6 +48,7 @@
 
         # lanzaboote.nixosModules.lanzaboote
         nix-flatpak.nixosModules.nix-flatpak
+        inputs.sops-nix.nixosModules.sops
 
         home-manager.nixosModules.home-manager
         {
@@ -51,6 +57,7 @@
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.iztiev = import ./home-manager/home.nix;
           home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+          home-manager.backupFileExtension = "backup";
         }
       ];
     };

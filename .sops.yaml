@@ -1,0 +1,7 @@
+keys:
+  - &iztiev age14zn6rtd59wnfr25dlnrxhlu2tgg6mug3ne3jcq2t90nqpvylnsyqdejzhu
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+      - age:
+        - *iztiev

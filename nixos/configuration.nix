@@ -2,6 +2,7 @@
 {
   # ── Nix Settings ──
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ (import ../overlays/default.nix) ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # ── Boot ──
@@ -144,6 +145,7 @@
     wget
     curl
     nvidia-vaapi-driver # Hardware video acceleration
+    izosevka # Custom Iosevka font variant
   ];
 
   system.stateVersion = "25.11";

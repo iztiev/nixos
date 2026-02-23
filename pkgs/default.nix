@@ -1,1 +1,3 @@
-{ pkgs }: { }
+{ pkgs }: {
+  izosevka = pkgs.callPackage ./izosevka { };
+}

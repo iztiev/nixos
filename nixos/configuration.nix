@@ -89,7 +89,7 @@
   services.steam.enable = true;
 
   # ── WoeUSB ──
-  programs.woeusb.enable = false;
+  programs.woeusb.enable = true;
 
   # ── Sops Configuration ──
   sops.secrets.iztiev-password.neededForUsers = true;

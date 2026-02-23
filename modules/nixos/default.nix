@@ -9,5 +9,6 @@
     ./printer-scanner.nix
     ./docker.nix
     ./woeusb.nix
+    ./v2ray.nix
   ];
 }

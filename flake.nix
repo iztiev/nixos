@@ -31,11 +31,16 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    ncalayer = {
+      url = "github:iztiev/NCALayer-Linux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
 #    izosevka.url = "github:iztiev/Izosevka";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nix-flatpak, firefox-addons, plasma-manager, lanzaboote, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, firefox-addons, plasma-manager, ... }: {
     nixosConfigurations.rhea = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -44,11 +49,10 @@
         ./nixos/configuration.nix
         ./modules/nixos
 
-#        inputs.izosevka.nixosModules.default
-
-        lanzaboote.nixosModules.lanzaboote
-        nix-flatpak.nixosModules.nix-flatpak
+        inputs.lanzaboote.nixosModules.lanzaboote
+        inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.sops-nix.nixosModules.sops
+        inputs.ncalayer.nixosModules.default
 
         home-manager.nixosModules.home-manager
         {

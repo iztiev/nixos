@@ -23,11 +23,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1771669320,
-        "narHash": "sha256-LqmgIBpjpMQKkHKCSGJkluMVFFoBdkUhJnu+Cq+jgGc=",
+        "lastModified": 1771732978,
+        "narHash": "sha256-o7gZh/eXFkEEmzwlBdIbgCJhmdlqQhOhVjudqgsIefg=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "496abb3aef244b896bf7cdd65e071cf624f16338",
+        "rev": "18226106e18bc40cce99d436ee741a946f1888f6",
         "type": "gitlab"
       },
       "original": {
@@ -50,6 +50,24 @@
       "original": {
         "owner": "edolstra",
         "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },
@@ -82,11 +100,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771683283,
-        "narHash": "sha256-WxAEkAbo8dP7qiyPM6VN4ZGAxfuBVlNBNPkrqkrXVEc=",
+        "lastModified": 1771851181,
+        "narHash": "sha256-gFgE6mGUftwseV3DUENMb0k0EiHd739lZexPo5O/sdQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c6ed3eab64d23520bcbb858aa53fe2b533725d4a",
+        "rev": "9a4b494b1aa1b93d8edf167f46dc8e0c0011280c",
         "type": "github"
       },
       "original": {
@@ -116,6 +134,27 @@
         "owner": "nix-community",
         "ref": "v1.0.0",
         "repo": "lanzaboote",
+        "type": "github"
+      }
+    },
+    "ncalayer": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771867743,
+        "narHash": "sha256-2T5CZVolKCwLpX42CVUztkG5+k9FqmMrlXBhOCxUxSs=",
+        "owner": "iztiev",
+        "repo": "NCALayer-Linux",
+        "rev": "3c3d4c85a0a45c755c91463963b38366ea7e83e2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iztiev",
+        "repo": "NCALayer-Linux",
         "type": "github"
       }
     },
@@ -201,6 +240,7 @@
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
+        "ncalayer": "ncalayer",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
         "plasma-manager": "plasma-manager",
@@ -245,6 +285,21 @@
       "original": {
         "owner": "mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
         "type": "github"
       }
     }

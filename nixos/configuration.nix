@@ -92,6 +92,12 @@
   # ── WoeUSB ──
   programs.woeusb.enable = true;
 
+  # ── NCALayer ──
+  programs.ncalayer = {
+    enable = true;
+    installCerts = true;
+  };
+
   # ── Sops Configuration ──
   sops.secrets.iztiev-password.neededForUsers = true;
 

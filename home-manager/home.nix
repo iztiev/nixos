@@ -244,6 +244,8 @@
                   "applications:pycharm.desktop"
                   "applications:webstorm.desktop"
                 ];
+                showOnlyCurrentScreen = true;
+                middleClickAction = "Close";
               };
             };
           }
@@ -273,6 +275,8 @@
                   "applications:pycharm.desktop"
                   "applications:webstorm.desktop"
                 ];
+                showOnlyCurrentScreen = true;
+                middleClickAction = "Close";
               };
             };
           }

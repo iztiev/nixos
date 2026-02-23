@@ -9,10 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # lanzaboote = {
-    #   url = "github:nix-community/lanzaboote/v1.0.0";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
@@ -35,7 +35,7 @@
 #    izosevka.url = "github:iztiev/Izosevka";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nix-flatpak, firefox-addons, plasma-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, nix-flatpak, firefox-addons, plasma-manager, lanzaboote, ... }: {
     nixosConfigurations.rhea = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -46,7 +46,7 @@
 
 #        inputs.izosevka.nixosModules.default
 
-        # lanzaboote.nixosModules.lanzaboote
+        lanzaboote.nixosModules.lanzaboote
         nix-flatpak.nixosModules.nix-flatpak
         inputs.sops-nix.nixosModules.sops
 

@@ -1,7 +1,7 @@
 { inputs, config, ... }:
 {
     imports = [
-        inputs.sops-nix.nixosModules.sops
+        inputs.sops-nix.homeManager.sops
     ];
 
     sops = {

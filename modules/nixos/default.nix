@@ -10,5 +10,6 @@
     ./docker.nix
     ./woeusb.nix
     ./v2ray.nix
+    ./development.nix
   ];
 }

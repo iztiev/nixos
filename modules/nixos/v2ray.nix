@@ -19,7 +19,7 @@
     content = ''
       {
         "log": {
-          "loglevel": "warning"
+          "loglevel": "info"
         },
         "inbounds": [
           {
@@ -33,6 +33,25 @@
             }
           }
         ],
+        "routing": {
+          "domainStrategy": "IPIfNonMatch",
+          "rules": [
+            {
+              "type": "field",
+              "domain": [
+                "iztiev.dev",
+                "drive.iztiev.dev",
+                "vr.iztiev.dev"
+              ],
+              "outboundTag": "direct"
+            },
+            {
+              "type": "field",
+              "network": "tcp,udp",
+              "outboundTag": "proxy"
+            }
+          ]
+        },
         "outbounds": [
           {
             "protocol": "vmess",

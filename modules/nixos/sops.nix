@@ -30,6 +30,18 @@
                 owner = "iztiev";
                 mode = "0400";
             };
+            nexus-login = {
+                owner = "iztiev";
+                mode = "0400";
+            };
+            nexus-password = {
+                owner = "iztiev";
+                mode = "0400";
+            };
+            nexus-npm-auth = {
+                owner = "iztiev";
+                mode = "0400";
+            };
             "private_keys/id_dilcher" = {
                 path = "/home/iztiev/.ssh/id_dilcher";
                 owner = "iztiev";
@@ -60,6 +72,44 @@
             content = ''
                 [user]
                     email = ${config.sops.placeholder.email-gmail}
+            '';
+        };
+
+        # Create .netrc file with nexus credentials
+        templates."netrc" = {
+            owner = "iztiev";
+            mode = "0600";
+            path = "/home/iztiev/.netrc";
+            content = ''
+                machine nexus.env.liquidvu.com
+                	login ${config.sops.placeholder.nexus-login}
+                	password ${config.sops.placeholder.nexus-password}
+            '';
+        };
+
+        # Create .npmrc file with nexus registry
+        templates."npmrc" = {
+            owner = "iztiev";
+            mode = "0600";
+            path = "/home/iztiev/.npmrc";
+            content = ''
+                registry=https://nexus.env.liquidvu.com/repository/npm-all/
+                email=${config.sops.placeholder.email-work}
+                always-auth=true
+                //nexus.env.liquidvu.com/repository/npm-all/:_auth=${config.sops.placeholder.nexus-npm-auth}
+            '';
+        };
+
+        # Create pip.conf file with nexus pypi registry
+        templates."pip-conf" = {
+            owner = "iztiev";
+            mode = "0600";
+            path = "/home/iztiev/.config/pip/pip.conf";
+            content = ''
+                [global]
+                index = https://nexus.env.liquidvu.com/repository/pypi-all/pypi
+                index-url = https://nexus.env.liquidvu.com/repository/pypi-all/simple
+                keyring-provider = subprocess
             '';
         };
     };

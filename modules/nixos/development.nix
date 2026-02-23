@@ -5,8 +5,8 @@
     gcc
 
     # Python Development
-    python3
-    python3Packages.virtualenv
+    python314
+    python314Packages.virtualenv
 
     # IDEs and Editors
     vscode

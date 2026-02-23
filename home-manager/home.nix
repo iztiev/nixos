@@ -213,14 +213,47 @@
     enable = true;
 
     # Panel configuration with pinned applications
+    # Two separate panels - one for each monitor
     panels = [
+      # Monitor 0 (DP-2) - Left monitor
       {
+        screen = 0;
         location = "bottom";
-        height = 66;  # 50% larger than default (44px * 1.5 = 66px)
+        height = 54;
+        floating = true;
         widgets = [
-          "org.kde.plasma.kickoff"  # Application launcher
+          "org.kde.plasma.kickoff"
           {
-            name = "org.kde.plasma.icontasks";  # Task Manager
+            name = "org.kde.plasma.icontasks";
+            config = {
+              General = {
+                launchers = [
+                  "applications:org.kde.dolphin.desktop"
+                  "applications:org.kde.konsole.desktop"
+                  "applications:firefox.desktop"
+                  "applications:chromium-browser.desktop"
+                  "applications:pycharm.desktop"
+                  "applications:webstorm.desktop"
+                ];
+              };
+            };
+          }
+          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.systemtray"
+          "org.kde.plasma.digitalclock"
+          "org.kde.plasma.showdesktop"
+        ];
+      }
+      # Monitor 1 (DP-3) - Right monitor
+      {
+        screen = 1;
+        location = "bottom";
+        height = 54;
+        floating = true;
+        widgets = [
+          "org.kde.plasma.kickoff"
+          {
+            name = "org.kde.plasma.icontasks";
             config = {
               General = {
                 launchers = [

@@ -8,5 +8,6 @@
     ./steam.nix
     ./printer-scanner.nix
     ./docker.nix
+    ./woeusb.nix
   ];
 }

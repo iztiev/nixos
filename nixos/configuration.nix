@@ -80,25 +80,16 @@
   # Choose one: KDE Plasma 6 or COSMIC
 
   # KDE Plasma 6 (disabled)
-  # services.kde = {
-  #   enable = true;
-  #   autoLogin = {
-  #     enable = true;
-  #     user = "iztiev";
-  #   };
-  # };
+  services.kde.enable = true;
 
   # COSMIC Desktop
-  services.cosmic = {
-    enable = true;
-    # autoLogin = {
-    #   enable = true;
-    #   user = "iztiev";
-    # };
-  };
+  #services.cosmic.enable = true;
 
   # ── Steam ──
   services.steam.enable = true;
+
+  # ── WoeUSB ──
+  programs.woeusb.enable = false;
 
   # ── Sops Configuration ──
   sops.secrets.iztiev-password.neededForUsers = true;

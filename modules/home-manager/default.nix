@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
-    ./sops.nix
+    # ./sops.nix
+    ./kde/default.nix
   ];
 }

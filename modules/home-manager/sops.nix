@@ -5,7 +5,7 @@
     ];
 
     sops = {
-        age.keyFile = "/home/iztiev/.config/sops/age/keys.txt";
+        age.keyFile = "/var/lib/sops-nix/key.txt";
 
         defaultSopsFile = ../../secrets.yaml;
         validateSopsFiles = false;

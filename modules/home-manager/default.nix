@@ -1,6 +1,8 @@
 { ... }: {
   imports = [
-    # ./sops.nix
+    ./firefox/default.nix
     ./kde/default.nix
+    ./ssh/default.nix
+    # ./sops.nix
   ];
 }

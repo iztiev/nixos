@@ -1,6 +1,8 @@
 { ... }: {
   imports = [
-    # ./sops.nix
     ./plasma.nix
+    ./displays.nix
+    ./konsole.nix
+    ./panels.nix
   ];
 }

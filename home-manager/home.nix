@@ -225,73 +225,6 @@
   programs.plasma = {
     enable = true;
 
-    # Panel configuration with pinned applications
-    # Two separate panels - one for each monitor
-    panels = [
-      # Monitor 0 (DP-2) - Left monitor
-      {
-        screen = 0;
-        location = "bottom";
-        height = 54;
-        floating = true;
-        widgets = [
-          "org.kde.plasma.kickoff"
-          {
-            name = "org.kde.plasma.icontasks";
-            config = {
-              General = {
-                launchers = [
-                  "applications:org.kde.dolphin.desktop"
-                  "applications:org.kde.konsole.desktop"
-                  "applications:firefox.desktop"
-                  "applications:chromium-browser.desktop"
-                  "applications:pycharm.desktop"
-                  "applications:webstorm.desktop"
-                ];
-                showOnlyCurrentScreen = true;
-                middleClickAction = "Close";
-              };
-            };
-          }
-          "org.kde.plasma.marginsseparator"
-          "org.kde.plasma.systemtray"
-          "org.kde.plasma.digitalclock"
-          "org.kde.plasma.showdesktop"
-        ];
-      }
-      # Monitor 1 (DP-3) - Right monitor
-      {
-        screen = 1;
-        location = "bottom";
-        height = 54;
-        floating = true;
-        widgets = [
-          "org.kde.plasma.kickoff"
-          {
-            name = "org.kde.plasma.icontasks";
-            config = {
-              General = {
-                launchers = [
-                  "applications:org.kde.dolphin.desktop"
-                  "applications:org.kde.konsole.desktop"
-                  "applications:firefox.desktop"
-                  "applications:chromium-browser.desktop"
-                  "applications:pycharm.desktop"
-                  "applications:webstorm.desktop"
-                ];
-                showOnlyCurrentScreen = true;
-                middleClickAction = "Close";
-              };
-            };
-          }
-          "org.kde.plasma.marginsseparator"
-          "org.kde.plasma.systemtray"
-          "org.kde.plasma.digitalclock"
-          "org.kde.plasma.showdesktop"
-        ];
-      }
-    ];
-
     # Configure scaling through config files
     # Adjust values as needed: 1 = 100%, 1.25 = 125%, 1.5 = 150%, 2 = 200%
     configFile = {
@@ -435,800 +368,367 @@
   ];
   };
 
-  # ── COSMIC Desktop Configuration ──
-  # COSMIC uses RON (Rusty Object Notation) for configuration files
-  # Configuration translated from ~/.config/cosmic dotfiles
-  # All files use force = true to manage them declaratively
-  xdg.configFile = {
-    # ── Setup & Initial Configuration ──
-    "cosmic/com.system76.CosmicSettings/v1/setup_complete" = { force = true; text = "true"; };
-    "cosmic/com.system76.CosmicSettings.Shortcuts/v1/custom" = { force = true; text = "{}"; };
+  # ── KDE Plasma Desktop Applets Configuration ──
+  # Declaratively manage Plasma desktop panel layout and applets
+  xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc" = {
+    force = true;
+    text = ''
+      [ActionPlugins][0]
+      MiddleButton;NoModifier=org.kde.paste
+      RightButton;NoModifier=org.kde.contextmenu
 
-    # ── Time Applet ──
-    "cosmic/com.system76.CosmicAppletTime/v1/first_day_of_week" = { force = true; text = "0"; };  # Sunday
-    "cosmic/com.system76.CosmicAppletTime/v1/military_time" = { force = true; text = "true"; };   # 24-hour format
+      [ActionPlugins][1]
+      RightButton;NoModifier=org.kde.contextmenu
 
-    # ── Background ──
-    "cosmic/com.system76.CosmicBackground/v1/same-on-all" = { force = true; text = "true"; };
+      [Containments][197]
+      activityId=
+      formfactor=2
+      immutability=1
+      lastScreen[$i]=0
+      location=4
+      plugin=org.kde.panel
+      wallpaperplugin=org.kde.image
 
-    # ── Compositor ──
-    "cosmic/com.system76.CosmicComp/v1/autotile_behavior" = { force = true; text = "PerWorkspace"; };
+      [Containments][197][Applets][198]
+      immutability=1
+      plugin=org.kde.plasma.kickoff
 
-    "cosmic/com.system76.CosmicComp/v1/xkb_config" = {
-      force = true;
-      text = ''
-        (
-            rules: "",
-            model: "pc104",
-            layout: "us,ru",
-            variant: ",",
-            options: Some("terminate:ctrl_alt_bksp"),
-            repeat_delay: 600,
-            repeat_rate: 25,
-        )
-      '';
-    };
+      [Containments][197][Applets][198][Configuration]
+      popupHeight=509
+      popupWidth=647
 
-    # ── Idle/Power Management ──
-    "cosmic/com.system76.CosmicIdle/v1/screen_off_time" = { force = true; text = "None"; };
-    "cosmic/com.system76.CosmicIdle/v1/suspend_on_ac_time" = { force = true; text = "None"; };
+      [Containments][197][Applets][198][Configuration][ConfigDialog]
+      DialogHeight=630
+      DialogWidth=810
 
-    # ── Dock Configuration ──
-    "cosmic/com.system76.CosmicPanel.Dock/v1/anchor" = { force = true; text = "Bottom"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/anchor_gap" = { force = true; text = "true"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/size" = { force = true; text = "L"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/size_center" = { force = true; text = "L"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/size_wings" = { force = true; text = "L"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/opacity" = { force = true; text = "1.0"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/background" = { force = true; text = "ThemeDefault"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/spacing" = { force = true; text = "0"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/expand_to_edges" = { force = true; text = "false"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/exclusive_zone" = { force = true; text = "false"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/border_radius" = { force = true; text = "12"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/layer" = { force = true; text = "Top"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/keyboard_interactivity" = { force = true; text = "None"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/margin" = { force = true; text = "0"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/padding" = { force = true; text = "0"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/padding_overlap" = { force = true; text = "false"; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/name" = { force = true; text = ''"Dock"''; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/output" = { force = true; text = ''"all"''; };
-    "cosmic/com.system76.CosmicPanel.Dock/v1/autohover_delay_ms" = { force = true; text = "200"; };
+      [Containments][197][Applets][198][Configuration][General]
+      favoritesPortedToKAstats=true
 
-    "cosmic/com.system76.CosmicPanel.Dock/v1/autohide" = {
-      force = true;
-      text = ''
-        Some((
-            wait_time: 1000,
-            transition_time: 200,
-            handle_size: 4,
-            unhide_delay: 200,
-        ))
-      '';
-    };
+      [Containments][197][Applets][199]
+      immutability=1
+      plugin=org.kde.plasma.icontasks
 
-    "cosmic/com.system76.CosmicPanel.Dock/v1/plugins_center" = {
-      force = true;
-      text = ''
-        Some([
-            "com.system76.CosmicPanelLauncherButton",
-            "com.system76.CosmicPanelWorkspacesButton",
-            "com.system76.CosmicPanelAppButton",
-            "com.system76.CosmicAppList",
-            "com.system76.CosmicAppletMinimize",
-        ])
-      '';
-    };
+      [Containments][197][Applets][199][Configuration][ConfigDialog]
+      DialogHeight=630
+      DialogWidth=810
 
-    "cosmic/com.system76.CosmicPanel.Dock/v1/plugins_wings" = { force = true; text = "None"; };
+      [Containments][197][Applets][199][Configuration][General]
+      groupingStrategy=0
+      launchers=applications:org.kde.dolphin.desktop,applications:org.kde.konsole.desktop,applications:firefox.desktop,applications:chromium-browser.desktop,applications:pycharm.desktop,applications:webstorm.desktop
+      middleClickAction=Close
+      showOnlyCurrentScreen=true
 
-    # Dock favorites
-    "cosmic/com.system76.CosmicPanel.Dock/v1/favorites" = {
-      force = true;
-      text = ''
-        [
-          "firefox.desktop",
-          "code.desktop",
-          "org.gnome.Nautilus.desktop",
-          "org.gnome.Console.desktop",
-          "com.slack.Slack.desktop",
-          "org.telegram.desktop.desktop",
-          "pycharm.desktop",
-          "webstorm.desktop",
-        ]
-      '';
-    };
+      [Containments][197][Applets][200]
+      immutability=1
+      plugin=org.kde.plasma.marginsseparator
 
-    # ── Panel Configuration ──
-    "cosmic/com.system76.CosmicPanel.Panel/v1/anchor" = { force = true; text = "Bottom"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/anchor_gap" = { force = true; text = "true"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/size" = { force = true; text = "M"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/size_center" = { force = true; text = "M"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/size_wings" = { force = true; text = "M"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/opacity" = { force = true; text = "1.0"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/background" = { force = true; text = "ThemeDefault"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/spacing" = { force = true; text = "0"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/expand_to_edges" = { force = true; text = "true"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/exclusive_zone" = { force = true; text = "true"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/border_radius" = { force = true; text = "0"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/layer" = { force = true; text = "Top"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/keyboard_interactivity" = { force = true; text = "OnDemand"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/margin" = { force = true; text = "0"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/padding" = { force = true; text = "0"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/name" = { force = true; text = ''"Panel"''; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/output" = { force = true; text = ''"all"''; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/autohide" = { force = true; text = "None"; };
-    "cosmic/com.system76.CosmicPanel.Panel/v1/autohover_delay_ms" = { force = true; text = "200"; };
+      [Containments][197][Applets][201]
+      activityId=
+      formfactor=0
+      immutability=1
+      lastScreen=-1
+      location=0
+      plugin=org.kde.plasma.systemtray
+      popupHeight=432
+      popupWidth=432
+      wallpaperplugin=org.kde.image
 
-    "cosmic/com.system76.CosmicPanel.Panel/v1/plugins_center" = { force = true; text = "Some([])"; };
+      [Containments][197][Applets][201][Applets][202]
+      immutability=1
+      plugin=org.kde.plasma.manage-inputmethod
 
-    "cosmic/com.system76.CosmicPanel.Panel/v1/plugins_wings" = {
-      force = true;
-      text = ''
-        Some(([
-            "com.system76.CosmicPanelLauncherButton",
-            "com.system76.CosmicPanelWorkspacesButton",
-            "com.system76.CosmicPanelAppButton",
-            "com.system76.CosmicAppList",
-            "com.system76.CosmicAppletMinimize",
-        ], [
-            "com.system76.CosmicAppletInputSources",
-            "com.system76.CosmicAppletStatusArea",
-            "com.system76.CosmicAppletA11y",
-            "com.system76.CosmicAppletTiling",
-            "com.system76.CosmicAppletAudio",
-            "com.system76.CosmicAppletBluetooth",
-            "com.system76.CosmicAppletNetwork",
-            "com.system76.CosmicAppletBattery",
-            "com.system76.CosmicAppletNotifications",
-            "com.system76.CosmicAppletTime",
-            "com.system76.CosmicAppletPower",
-        ]))
-      '';
-    };
+      [Containments][197][Applets][201][Applets][203]
+      immutability=1
+      plugin=org.kde.plasma.notifications
 
-    # Panel entries - defines which panels are active
-    "cosmic/com.system76.CosmicPanel/v1/entries" = {
-      force = true;
-      text = ''
-        [
-            "Panel",
-        ]
-      '';
-    };
+      [Containments][197][Applets][201][Applets][204]
+      immutability=1
+      plugin=org.kde.plasma.clipboard
 
-    # ── Theme Configuration ──
-    "cosmic/com.system76.CosmicTheme.Mode/v1/is_dark" = { force = true; text = "true"; };
-    "cosmic/com.system76.CosmicTheme.Mode/v1/auto_switch" = { force = true; text = "false"; };
+      [Containments][197][Applets][201][Applets][205]
+      immutability=1
+      plugin=org.kde.plasma.devicenotifier
 
-    # Dark Theme Settings
-    "cosmic/com.system76.CosmicTheme.Dark/v1/primary" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Dark/v1/secondary" = { force = true; text = "CosmicPalette"; };
+      [Containments][197][Applets][201][Applets][206]
+      immutability=1
+      plugin=org.kde.plasma.cameraindicator
 
-    "cosmic/com.system76.CosmicTheme.Dark/v1/palette" = {
-      force = true;
-      text = ''
-      (
-          name: "cosmic-dark",
-          bright_red: (
-              red: 1.0,
-              green: 0.627451,
-              blue: 0.5647059,
-              alpha: 1.0,
-          ),
-          bright_green: (
-              red: 0.36862746,
-              green: 0.85882354,
-              blue: 0.54901963,
-              alpha: 1.0,
-          ),
-          bright_orange: (
-              red: 1.0,
-              green: 0.6392157,
-              blue: 0.49019608,
-              alpha: 1.0,
-          ),
-          gray_1: (
-              red: 0.105882354,
-              green: 0.105882354,
-              blue: 0.105882354,
-              alpha: 1.0,
-          ),
-          gray_2: (
-              red: 0.14901961,
-              green: 0.14901961,
-              blue: 0.14901961,
-              alpha: 1.0,
-          ),
-          neutral_0: (
-              red: 0.0,
-              green: 0.0,
-              blue: 0.0,
-              alpha: 1.0,
-          ),
-          neutral_1: (
-              red: 0.105882354,
-              green: 0.105882354,
-              blue: 0.105882354,
-              alpha: 1.0,
-          ),
-          neutral_2: (
-              red: 0.1882353,
-              green: 0.1882353,
-              blue: 0.1882353,
-              alpha: 1.0,
-          ),
-          neutral_3: (
-              red: 0.2784314,
-              green: 0.2784314,
-              blue: 0.2784314,
-              alpha: 1.0,
-          ),
-          neutral_4: (
-              red: 0.36862746,
-              green: 0.36862746,
-              blue: 0.36862746,
-              alpha: 1.0,
-          ),
-          neutral_5: (
-              red: 0.46666667,
-              green: 0.46666667,
-              blue: 0.46666667,
-              alpha: 1.0,
-          ),
-          neutral_6: (
-              red: 0.5686275,
-              green: 0.5686275,
-              blue: 0.5686275,
-              alpha: 1.0,
-          ),
-          neutral_7: (
-              red: 0.67058825,
-              green: 0.67058825,
-              blue: 0.67058825,
-              alpha: 1.0,
-          ),
-          neutral_8: (
-              red: 0.7764706,
-              green: 0.7764706,
-              blue: 0.7764706,
-              alpha: 1.0,
-          ),
-          neutral_9: (
-              red: 0.8862745,
-              green: 0.8862745,
-              blue: 0.8862745,
-              alpha: 1.0,
-          ),
-          neutral_10: (
-              red: 1.0,
-              green: 1.0,
-              blue: 1.0,
-              alpha: 1.0,
-          ),
-          accent_blue: (
-              red: 0.3882353,
-              green: 0.8156863,
-              blue: 0.8745098,
-              alpha: 1.0,
-          ),
-          accent_indigo: (
-              red: 0.6313726,
-              green: 0.7529412,
-              blue: 0.92156863,
-              alpha: 1.0,
-          ),
-          accent_purple: (
-              red: 0.90588236,
-              green: 0.6117647,
-              blue: 0.99607843,
-              alpha: 1.0,
-          ),
-          accent_pink: (
-              red: 1.0,
-              green: 0.6117647,
-              blue: 0.69411767,
-              alpha: 1.0,
-          ),
-          accent_red: (
-              red: 0.99215686,
-              green: 0.6313726,
-              blue: 0.627451,
-              alpha: 1.0,
-          ),
-          accent_orange: (
-              red: 1.0,
-              green: 0.6784314,
-              blue: 0.0,
-              alpha: 1.0,
-          ),
-          accent_yellow: (
-              red: 0.96862745,
-              green: 0.8784314,
-              blue: 0.38431373,
-              alpha: 1.0,
-          ),
-          accent_green: (
-              red: 0.57254905,
-              green: 0.8117647,
-              blue: 0.6117647,
-              alpha: 1.0,
-          ),
-          accent_warm_grey: (
-              red: 0.7921569,
-              green: 0.7294118,
-              blue: 0.7058824,
-              alpha: 1.0,
-          ),
-          ext_warm_grey: (
-              red: 0.60784316,
-              green: 0.5568628,
-              blue: 0.5411765,
-              alpha: 1.0,
-          ),
-          ext_orange: (
-              red: 1.0,
-              green: 0.6784314,
-              blue: 0.0,
-              alpha: 1.0,
-          ),
-          ext_yellow: (
-              red: 0.99607843,
-              green: 0.85882354,
-              blue: 0.2509804,
-              alpha: 1.0,
-          ),
-          ext_blue: (
-              red: 0.28235295,
-              green: 0.7254902,
-              blue: 0.78039217,
-              alpha: 1.0,
-          ),
-          ext_purple: (
-              red: 0.8117647,
-              green: 0.49019608,
-              blue: 1.0,
-              alpha: 1.0,
-          ),
-          ext_pink: (
-              red: 0.9764706,
-              green: 0.22745098,
-              blue: 0.5137255,
-              alpha: 1.0,
-          ),
-          ext_indigo: (
-              red: 0.24313726,
-              green: 0.53333336,
-              blue: 1.0,
-              alpha: 1.0,
-          ),
-      )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][207]
+      immutability=1
+      plugin=org.kde.plasma.keyboardlayout
 
-    "cosmic/com.system76.CosmicTheme.Dark/v1/corner_radii" = {
-      force = true;
-      text = ''
-        (
-            radius_0: (0.0, 0.0, 0.0, 0.0),
-            radius_xs: (4.0, 4.0, 4.0, 4.0),
-            radius_s: (8.0, 8.0, 8.0, 8.0),
-            radius_m: (16.0, 16.0, 16.0, 16.0),
-            radius_l: (32.0, 32.0, 32.0, 32.0),
-            radius_xl: (160.0, 160.0, 160.0, 160.0),
-        )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][208]
+      immutability=1
+      plugin=org.kde.plasma.volume
 
-    "cosmic/com.system76.CosmicTheme.Dark/v1/spacing" = {
-      force = true;
-      text = ''
-        (
-            space_none: 0,
-            space_xxxs: 4,
-            space_xxs: 4,
-            space_xs: 8,
-            space_s: 8,
-            space_m: 16,
-            space_l: 24,
-            space_xl: 32,
-            space_xxl: 48,
-            space_xxxl: 64,
-        )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][208][Configuration][General]
+      migrated=true
 
-    # Dark Theme Builder Settings
-    "cosmic/com.system76.CosmicTheme.Dark.Builder/v1/corner_radii" = {
-      force = true;
-      text = ''
-        (
-            radius_0: [0.0, 0.0, 0.0, 0.0],
-            radius_xs: [4.0, 4.0, 4.0, 4.0],
-            radius_s: [8.0, 8.0, 8.0, 8.0],
-            radius_m: [16.0, 16.0, 16.0, 16.0],
-            radius_l: [32.0, 32.0, 32.0, 32.0],
-            radius_xl: [160.0, 160.0, 160.0, 160.0],
-        )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][209]
+      immutability=1
+      plugin=org.kde.plasma.networkmanagement
 
-    "cosmic/com.system76.CosmicTheme.Dark.Builder/v1/spacing" = {
-      force = true;
-      text = ''
-        (
-            space_none: 0,
-            space_xxxs: 4,
-            space_xxs: 4,
-            space_xs: 8,
-            space_s: 8,
-            space_m: 16,
-            space_l: 24,
-            space_xl: 32,
-            space_xxl: 48,
-            space_xxxl: 64,
-        )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][210]
+      immutability=1
+      plugin=org.kde.plasma.printmanager
 
-    # Light Theme Settings
-    "cosmic/com.system76.CosmicTheme.Light/v1/primary" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/secondary" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/accent" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/accent_button" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/background" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/button" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/destructive" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/destructive_button" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/icon_button" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/link_button" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/success" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/text_button" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/warning" = { force = true; text = "CosmicPalette"; };
-    "cosmic/com.system76.CosmicTheme.Light/v1/warning_button" = { force = true; text = "CosmicPalette"; };
+      [Containments][197][Applets][201][Applets][211]
+      immutability=1
+      plugin=org.kde.plasma.weather
 
-    "cosmic/com.system76.CosmicTheme.Light/v1/palette" = {
-      force = true;
-      text = ''
-      (
-          name: "cosmic-light",
-          bright_red: (
-              red: 0.5372549,
-              green: 0.015686275,
-              blue: 0.09411765,
-              alpha: 1.0,
-          ),
-          bright_green: (
-              red: 0.0,
-              green: 0.34117648,
-              blue: 0.17254902,
-              alpha: 1.0,
-          ),
-          bright_orange: (
-              red: 0.4745098,
-              green: 0.17254902,
-              blue: 0.0,
-              alpha: 1.0,
-          ),
-          gray_1: (
-              red: 0.8666667,
-              green: 0.8666667,
-              blue: 0.8666667,
-              alpha: 1.0,
-          ),
-          gray_2: (
-              red: 0.9098039,
-              green: 0.9098039,
-              blue: 0.9098039,
-              alpha: 1.0,
-          ),
-          neutral_0: (
-              red: 1.0,
-              green: 1.0,
-              blue: 1.0,
-              alpha: 1.0,
-          ),
-          neutral_1: (
-              red: 0.8862745,
-              green: 0.8862745,
-              blue: 0.8862745,
-              alpha: 1.0,
-          ),
-          neutral_2: (
-              red: 0.7764706,
-              green: 0.7764706,
-              blue: 0.7764706,
-              alpha: 1.0,
-          ),
-          neutral_3: (
-              red: 0.67058825,
-              green: 0.67058825,
-              blue: 0.67058825,
-              alpha: 1.0,
-          ),
-          neutral_4: (
-              red: 0.5686275,
-              green: 0.5686275,
-              blue: 0.5686275,
-              alpha: 1.0,
-          ),
-          neutral_5: (
-              red: 0.46666667,
-              green: 0.46666667,
-              blue: 0.46666667,
-              alpha: 1.0,
-          ),
-          neutral_6: (
-              red: 0.36862746,
-              green: 0.36862746,
-              blue: 0.36862746,
-              alpha: 1.0,
-          ),
-          neutral_7: (
-              red: 0.2784314,
-              green: 0.2784314,
-              blue: 0.2784314,
-              alpha: 1.0,
-          ),
-          neutral_8: (
-              red: 0.1882353,
-              green: 0.1882353,
-              blue: 0.1882353,
-              alpha: 1.0,
-          ),
-          neutral_9: (
-              red: 0.105882354,
-              green: 0.105882354,
-              blue: 0.105882354,
-              alpha: 1.0,
-          ),
-          neutral_10: (
-              red: 0.0,
-              green: 0.0,
-              blue: 0.0,
-              alpha: 1.0,
-          ),
-          accent_blue: (
-              red: 0.0,
-              green: 0.32156864,
-              blue: 0.3529412,
-              alpha: 1.0,
-          ),
-          accent_indigo: (
-              red: 0.18039216,
-              green: 0.28627452,
-              blue: 0.42745098,
-              alpha: 1.0,
-          ),
-          accent_purple: (
-              red: 0.40784314,
-              green: 0.12941177,
-              blue: 0.4862745,
-              alpha: 1.0,
-          ),
-          accent_pink: (
-              red: 0.5254902,
-              green: 0.015686275,
-              blue: 0.22745098,
-              alpha: 1.0,
-          ),
-          accent_red: (
-              red: 0.47058824,
-              green: 0.16078432,
-              blue: 0.18039216,
-              alpha: 1.0,
-          ),
-          accent_orange: (
-              red: 0.38431373,
-              green: 0.2509804,
-              blue: 0.0,
-              alpha: 1.0,
-          ),
-          accent_yellow: (
-              red: 0.3254902,
-              green: 0.28235295,
-              blue: 0.0,
-              alpha: 1.0,
-          ),
-          accent_green: (
-              red: 0.09411765,
-              green: 0.33333334,
-              blue: 0.16078432,
-              alpha: 1.0,
-          ),
-          accent_warm_grey: (
-              red: 0.33333334,
-              green: 0.2784314,
-              blue: 0.25882354,
-              alpha: 1.0,
-          ),
-          ext_warm_grey: (
-              red: 0.60784316,
-              green: 0.5568628,
-              blue: 0.5411765,
-              alpha: 1.0,
-          ),
-          ext_orange: (
-              red: 0.9843137,
-              green: 0.72156864,
-              blue: 0.42352942,
-              alpha: 1.0,
-          ),
-          ext_yellow: (
-              red: 0.96862745,
-              green: 0.8784314,
-              blue: 0.38431373,
-              alpha: 1.0,
-          ),
-          ext_blue: (
-              red: 0.41568628,
-              green: 0.7921569,
-              blue: 0.84705883,
-              alpha: 1.0,
-          ),
-          ext_purple: (
-              red: 0.8352941,
-              green: 0.54901963,
-              blue: 1.0,
-              alpha: 1.0,
-          ),
-          ext_pink: (
-              red: 1.0,
-              green: 0.6117647,
-              blue: 0.8666667,
-              alpha: 1.0,
-          ),
-          ext_indigo: (
-              red: 0.58431375,
-              green: 0.76862746,
-              blue: 0.9882353,
-              alpha: 1.0,
-          ),
-      )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][212]
+      immutability=1
+      plugin=org.kde.plasma.keyboardindicator
 
-    "cosmic/com.system76.CosmicTheme.Light/v1/corner_radii" = {
-      force = true;
-      text = ''
-        (
-            radius_0: (0.0, 0.0, 0.0, 0.0),
-            radius_xs: (4.0, 4.0, 4.0, 4.0),
-            radius_s: (8.0, 8.0, 8.0, 8.0),
-            radius_m: (16.0, 16.0, 16.0, 16.0),
-            radius_l: (32.0, 32.0, 32.0, 32.0),
-            radius_xl: (160.0, 160.0, 160.0, 160.0),
-        )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][213]
+      immutability=1
+      plugin=org.kde.kscreen
 
-    "cosmic/com.system76.CosmicTheme.Light/v1/spacing" = {
-      force = true;
-      text = ''
-        (
-            space_none: 0,
-            space_xxxs: 4,
-            space_xxs: 4,
-            space_xs: 8,
-            space_s: 8,
-            space_m: 16,
-            space_l: 24,
-            space_xl: 32,
-            space_xxl: 48,
-            space_xxxl: 64,
-        )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][237]
+      immutability=1
+      plugin=org.kde.plasma.brightness
 
-    # Light Theme Builder Settings
-    "cosmic/com.system76.CosmicTheme.Light.Builder/v1/corner_radii" = {
-      force = true;
-      text = ''
-        (
-            radius_0: [0.0, 0.0, 0.0, 0.0],
-            radius_xs: [4.0, 4.0, 4.0, 4.0],
-            radius_s: [8.0, 8.0, 8.0, 8.0],
-            radius_m: [16.0, 16.0, 16.0, 16.0],
-            radius_l: [32.0, 32.0, 32.0, 32.0],
-            radius_xl: [160.0, 160.0, 160.0, 160.0],
-        )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][238]
+      immutability=1
+      plugin=org.kde.plasma.battery
 
-    "cosmic/com.system76.CosmicTheme.Light.Builder/v1/spacing" = {
-      force = true;
-      text = ''
-        (
-            space_none: 0,
-            space_xxxs: 4,
-            space_xxs: 4,
-            space_xs: 8,
-            space_s: 8,
-            space_m: 16,
-            space_l: 24,
-            space_xl: 32,
-            space_xxl: 48,
-            space_xxxl: 64,
-        )
-      '';
-    };
+      [Containments][197][Applets][201][Applets][242]
+      immutability=1
+      plugin=org.kde.plasma.mediacontroller
 
-    # ── Toolkit/Interface Settings ──
-    "cosmic/com.system76.CosmicTk/v1/interface_density" = { force = true; text = "Compact"; };
-    "cosmic/com.system76.CosmicTk/v1/header_size" = { force = true; text = "Compact"; };
+      [Containments][197][Applets][201][General]
+      extraItems=org.kde.plasma.manage-inputmethod,org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.cameraindicator,org.kde.plasma.keyboardlayout,org.kde.plasma.volume,org.kde.plasma.brightness,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.printmanager,org.kde.plasma.weather,org.kde.plasma.keyboardindicator,org.kde.kscreen
+      knownItems=org.kde.plasma.manage-inputmethod,org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.cameraindicator,org.kde.plasma.keyboardlayout,org.kde.plasma.volume,org.kde.plasma.brightness,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.printmanager,org.kde.plasma.weather,org.kde.plasma.keyboardindicator,org.kde.kscreen
 
-    # ── Display Configuration ──
-    "cosmic/com.system76.CosmicComp/v1/xdg_output_config" = {
-      force = true;
-      text = ''
-        {
-          "DP-2": (
-            mode: ((3840, 2160), 59997),
-            position: (0, 0),
-            scale: 1.0,
-            transform: Normal,
-            vrr: false,
-            enabled: true,
-          ),
-          "DP-3": (
-            mode: ((3840, 2160), 59997),
-            position: (3840, 0),
-            scale: 1.0,
-            transform: Normal,
-            vrr: false,
-            enabled: true,
-          ),
-        }
-      '';
-    };
+      [Containments][197][Applets][214]
+      immutability=1
+      plugin=org.kde.plasma.digitalclock
 
-    "cosmic/com.system76.CosmicComp/v1/primary_display" = { force = true; text = ''"DP-3"''; };
+      [Containments][197][Applets][214][Configuration]
+      popupHeight=400
+      popupWidth=560
 
-    # ── Input Settings ──
-    "cosmic/com.system76.CosmicComp/v1/input" = {
-      force = true;
-      text = ''
-        (
-          keyboard: (
-            repeat_delay: 600,
-            repeat_rate: 25,
-            layouts: ["us", "ru"],
-            options: "grp:caps_toggle",
-          ),
-          touchpad: (
-            click_method: Clickfinger,
-            scroll_method: TwoFinger,
-            tap_to_click: true,
-            natural_scroll: true,
-            accel_profile: Adaptive,
-            accel_speed: 0.0,
-          ),
-          pointer: (
-            natural_scroll: true,
-            accel_profile: Flat,
-            accel_speed: 0.0,
-          ),
-        )
-      '';
-    };
+      [Containments][197][Applets][215]
+      immutability=1
+      plugin=org.kde.plasma.showdesktop
 
-    # Input default settings - NOTE: Removed from declarative management
-    # because COSMIC overwrites this file at runtime
-    # See home.activation.cosmicInputSettings below for the actual implementation
+      [Containments][197][General]
+      AppletOrder=198;199;200;201;214;215
 
-    # ── Accessibility Settings ──
-    "cosmic/com.system76.CosmicSettings.Accessibility/v1/config" = {
-      force = true;
-      text = ''
-        (
-          enable_screen_reader: false,
-          enable_high_contrast: false,
-          enable_large_text: false,
-          enable_sticky_keys: false,
-          enable_slow_keys: false,
-          enable_bounce_keys: false,
-        )
-      '';
-    };
+      [Containments][216]
+      activityId=
+      formfactor=2
+      immutability=1
+      lastScreen[$i]=1
+      location=4
+      plugin=org.kde.panel
+      wallpaperplugin=org.kde.image
+
+      [Containments][216][Applets][217]
+      immutability=1
+      plugin=org.kde.plasma.kickoff
+
+      [Containments][216][Applets][217][Configuration]
+      popupHeight=509
+      popupWidth=647
+
+      [Containments][216][Applets][217][Configuration][General]
+      favoritesPortedToKAstats=true
+
+      [Containments][216][Applets][218]
+      immutability=1
+      plugin=org.kde.plasma.icontasks
+
+      [Containments][216][Applets][218][Configuration][ConfigDialog]
+      DialogHeight=630
+      DialogWidth=810
+
+      [Containments][216][Applets][218][Configuration][General]
+      groupingStrategy=0
+      launchers=applications:org.kde.dolphin.desktop,applications:org.kde.konsole.desktop,applications:firefox.desktop,applications:chromium-browser.desktop,applications:pycharm.desktop,applications:webstorm.desktop
+      middleClickAction=Close
+      showOnlyCurrentScreen=true
+
+      [Containments][216][Applets][219]
+      immutability=1
+      plugin=org.kde.plasma.marginsseparator
+
+      [Containments][216][Applets][220]
+      activityId=
+      formfactor=0
+      immutability=1
+      lastScreen=-1
+      location=0
+      plugin=org.kde.plasma.systemtray
+      popupHeight=432
+      popupWidth=432
+      wallpaperplugin=org.kde.image
+
+      [Containments][216][Applets][220][Applets][221]
+      immutability=1
+      plugin=org.kde.plasma.manage-inputmethod
+
+      [Containments][216][Applets][220][Applets][222]
+      immutability=1
+      plugin=org.kde.plasma.notifications
+
+      [Containments][216][Applets][220][Applets][223]
+      immutability=1
+      plugin=org.kde.plasma.clipboard
+
+      [Containments][216][Applets][220][Applets][224]
+      immutability=1
+      plugin=org.kde.plasma.devicenotifier
+
+      [Containments][216][Applets][220][Applets][225]
+      immutability=1
+      plugin=org.kde.plasma.cameraindicator
+
+      [Containments][216][Applets][220][Applets][226]
+      immutability=1
+      plugin=org.kde.plasma.keyboardlayout
+
+      [Containments][216][Applets][220][Applets][227]
+      immutability=1
+      plugin=org.kde.plasma.volume
+
+      [Containments][216][Applets][220][Applets][227][Configuration][General]
+      migrated=true
+
+      [Containments][216][Applets][220][Applets][228]
+      immutability=1
+      plugin=org.kde.plasma.networkmanagement
+
+      [Containments][216][Applets][220][Applets][229]
+      immutability=1
+      plugin=org.kde.plasma.printmanager
+
+      [Containments][216][Applets][220][Applets][230]
+      immutability=1
+      plugin=org.kde.plasma.weather
+
+      [Containments][216][Applets][220][Applets][231]
+      immutability=1
+      plugin=org.kde.plasma.keyboardindicator
+
+      [Containments][216][Applets][220][Applets][232]
+      immutability=1
+      plugin=org.kde.kscreen
+
+      [Containments][216][Applets][220][Applets][239]
+      immutability=1
+      plugin=org.kde.plasma.brightness
+
+      [Containments][216][Applets][220][Applets][240]
+      immutability=1
+      plugin=org.kde.plasma.battery
+
+      [Containments][216][Applets][220][Applets][241]
+      immutability=1
+      plugin=org.kde.plasma.mediacontroller
+
+      [Containments][216][Applets][220][General]
+      extraItems=org.kde.plasma.manage-inputmethod,org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.cameraindicator,org.kde.plasma.keyboardlayout,org.kde.plasma.volume,org.kde.plasma.brightness,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.printmanager,org.kde.plasma.weather,org.kde.plasma.keyboardindicator,org.kde.kscreen
+      knownItems=org.kde.plasma.manage-inputmethod,org.kde.plasma.notifications,org.kde.plasma.clipboard,org.kde.plasma.mediacontroller,org.kde.plasma.devicenotifier,org.kde.plasma.cameraindicator,org.kde.plasma.keyboardlayout,org.kde.plasma.volume,org.kde.plasma.brightness,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.printmanager,org.kde.plasma.weather,org.kde.plasma.keyboardindicator,org.kde.kscreen
+
+      [Containments][216][Applets][233]
+      immutability=1
+      plugin=org.kde.plasma.digitalclock
+
+      [Containments][216][Applets][233][Configuration]
+      popupHeight=400
+      popupWidth=560
+
+      [Containments][216][Applets][234]
+      immutability=1
+      plugin=org.kde.plasma.showdesktop
+
+      [Containments][216][General]
+      AppletOrder=217;218;219;220;233;234
+
+      [Containments][235]
+      ItemGeometries-3840x2160=
+      ItemGeometriesHorizontal=
+      activityId=00c4b352-5d74-46f9-ab53-ab3a14d5ed49
+      formfactor=0
+      immutability=1
+      lastScreen=0
+      location=0
+      plugin=org.kde.plasma.folder
+      wallpaperplugin=org.kde.image
+
+      [Containments][236]
+      ItemGeometries-3840x2160=
+      ItemGeometriesHorizontal=
+      activityId=00c4b352-5d74-46f9-ab53-ab3a14d5ed49
+      formfactor=0
+      immutability=1
+      lastScreen=1
+      location=0
+      plugin=org.kde.plasma.folder
+      wallpaperplugin=org.kde.image
+
+      [ScreenMapping]
+      itemsOnDisabledScreens=
+    '';
+  };
+
+  # KDE Plasma Shell configuration
+  xdg.configFile."plasmashellrc" = {
+    force = true;
+    text = ''
+      [PlasmaViews][Panel 197]
+      floating=1
+
+      [PlasmaViews][Panel 197][Defaults]
+      thickness=44
+
+      [PlasmaViews][Panel 216]
+      floating=1
+
+      [PlasmaViews][Panel 216][Defaults]
+      thickness=44
+
+      [Updates]
+      performed=/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/systemloadviewer_systemmonitor.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/unlock_widgets.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/mediaframe_migrate_useBackground_setting.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/containmentactions_middlebutton.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/keyboardlayout_remove_shortcut.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/digitalclock_migrate_font_settings.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/keyboardlayout_migrateiconsetting.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/no_middle_click_paste_on_panels.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/digitalclock_rename_timezonedisplay_key.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/digitalclock_migrate_showseconds_setting.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/move_desktop_layout_config.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/migrate_font_weights.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/maintain_existing_desktop_icon_sizes.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/klipper_clear_config.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/taskmanager_configUpdate_wheelEnabled.js,/run/current-system/sw/share/plasma/shells/org.kde.plasma.desktop/contents/updates/folderview_fix_recursive_screenmapping.js
+    '';
+  };
+
+  # KDE Konsole configuration
+  xdg.configFile."konsolerc" = {
+    force = true;
+    text = ''
+      [Desktop Entry]
+      DefaultProfile=Izosevka.profile
+
+      [General]
+      ConfigVersion=1
+
+      [KonsoleWindow]
+      ShowMenuBarByDefault=false
+
+      [Notification Messages]
+      CloseSessionsWithProcesses=false
+
+      [UiSettings]
+      ColorScheme=
+    '';
+  };
+
+  # KDE Konsole profile (in ~/.local/share/konsole/)
+  xdg.dataFile."konsole/Izosevka.profile" = {
+    force = true;
+    text = ''
+      [Appearance]
+      Font=Izosevka,16,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+      [General]
+      Name=Izosevka
+      Parent=FALLBACK/
+
+      [Scrolling]
+      HistoryMode=2
+    '';
   };
 
   # ── SSH Directory Permissions ──

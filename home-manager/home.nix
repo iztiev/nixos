@@ -67,7 +67,7 @@
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos#rhea";
       rebuild-home = "sudo nixos-rebuild switch --flake ~/nixos#rhea";
       update = "nix flake update --flake ~/nixos";
-      cleanup = "sudo nix-env --delete-generations +3 --profile /nix/var/nix/profiles/system && nix-env --delete-generations +3 && sudo nix-collect-garbage -d";
+      cleanup = "sudo nix-env --delete-generations +2 --profile /nix/var/nix/profiles/system && nix-env --delete-generations +2 && sudo nix-collect-garbage -d";
     };
   };
 

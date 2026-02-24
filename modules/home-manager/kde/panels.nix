@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   # ── Desktop Entries for JetBrains IDEs ──

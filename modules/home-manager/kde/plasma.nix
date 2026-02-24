@@ -51,4 +51,16 @@
       "x-scheme-handler/unknown" = "firefox.desktop";
     };
   };
+
+  # Keyboard layout settings
+  xdg.configFile."kxkbrc" = {
+    source = ./files/kxkbrc;
+    force = true;
+  };
+
+  # Mouse settings
+  xdg.configFile."kcminputrc" = {
+    source = ./files/kcminputrc;
+    force = true;
+  };
 }

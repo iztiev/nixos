@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   # ── KDE Plasma Configuration ──
@@ -58,9 +58,14 @@
     force = true;
   };
 
-  # Mouse settings
-  xdg.configFile."kcminputrc" = {
-    source = ./files/kcminputrc;
-    force = true;
-  };
+  # Mouse settings - use activation to copy (not symlink) so it's writable
+  # Run BEFORE writeBoundary to ensure file exists before plasma-manager tries to write
+  home.activation.kcminputrc = config.lib.dag.entryBefore ["writeBoundary"] ''
+    mkdir -p "$HOME/.config"
+    # Remove any existing symlink or file
+    rm -f "$HOME/.config/kcminputrc"
+    # Copy the file and make it writable
+    cp -f ${./files/kcminputrc} "$HOME/.config/kcminputrc"
+    chmod 644 "$HOME/.config/kcminputrc"
+  '';
 }

@@ -3,49 +3,8 @@
   # ── SSH ──
   # Directly manage SSH config file to ensure it's always created
   home.file.".ssh/config" = {
+    source = ./files/config;
     force = true;
-    text = ''
-      Host github.com
-        IdentityFile ~/.ssh/id_github
-      Host gitlab.finq.kz
-        IdentityFile ~/.ssh/id_github
-      Host llm.sx
-        IdentityFile ~/.ssh/id_dilcher
-      Host 35.164.116.189
-        IdentityFile ~/.ssh/id_dilcher
-      Host 49.12.110.230
-        IdentityFile ~/.ssh/id_dilcher
-      Host 37.27.241.163
-        IdentityFile ~/.ssh/id_dilcher
-      Host *.backend.sx
-        IdentityFile ~/.ssh/id_dilcher
-      Host iztiev.dev
-        IdentityFile ~/.ssh/id_hetzner
-      Host *.iztiev.dev
-        IdentityFile ~/.ssh/id_hetzner
-      Host *.embeddings.sx
-        IdentityFile ~/.ssh/id_dilcher
-      Host *.liquid.mx
-        IdentityFile ~/.ssh/id_dilcher
-      Host *.devel.pm
-        IdentityFile ~/.ssh/id_dilcher
-      Host 138.201.206.85
-        IdentityFile ~/.ssh/id_dilcher
-      Host 195.201.164.162
-        IdentityFile ~/.ssh/id_dilcher
-      Host 37.27.141.78
-        IdentityFile ~/.ssh/id_dilcher
-      Host *.liquid.pm
-        IdentityFile ~/.ssh/id_dilcher
-      Host zt.moon.backend.sx
-        IdentityFile ~/.ssh/id_dilcher
-      Host 10.98.81.94
-        IdentityFile ~/.ssh/id_dilcher
-      Host 10.98.81.14
-        IdentityFile ~/.ssh/id_dilcher
-      Host *
-        ServerAliveInterval 100
-    '';
   };
 
   # ── Disable SSH Agent ──

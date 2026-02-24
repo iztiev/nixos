@@ -48,12 +48,12 @@
   # ── Git ──
   programs.git = {
     enable = true;
-    userName = "Timur Izmagambetov";
     # user.email is set via sops template at ~/.config/git/config-email
     includes = [
       { path = "~/.config/git/config-email"; }
     ];
-    extraConfig = {
+    settings = {
+      user.name = "Timur Izmagambetov";
       init.defaultBranch = "main";
       pull.rebase = true;
     };

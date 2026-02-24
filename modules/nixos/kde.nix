@@ -29,6 +29,7 @@ with lib;
       default = with pkgs.kdePackages; [
         sddm-kcm         # SDDM settings in System Settings
         partitionmanager # KDE Partition Manager
+        kcalc
       ];
       description = "Additional KDE packages to install";
     };

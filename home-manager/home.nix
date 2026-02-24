@@ -24,9 +24,6 @@
 
   # ── User Packages ──
   home.packages = with pkgs; [
-    # Browsers
-    chromium
-
     # Development
     claude-code
 
@@ -35,6 +32,13 @@
     ripgrep
     fd
     unzip
+
+    # Internet
+    chromium
+    qbittorrent
+
+    # Ofiice
+    libreoffice-qt
   ];
 
   # ── Firefox with Declarative Extensions ──

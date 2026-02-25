@@ -28,6 +28,9 @@
         Xwayland = {
           Scale = 1;
         };
+        TabBox = {
+          MultiScreenMode=1;
+        };
       };
 
       # Session Management - start with empty session

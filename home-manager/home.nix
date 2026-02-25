@@ -75,5 +75,22 @@
     };
   };
 
+  # ── VSCode ──
+  programs.vscode = {
+    enable = true;
+    profiles.default.extensions = with pkgs.vscode-extensions; [
+      jnoortheen.nix-ide
+    ] ++ (with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
+      mohsen1.prettify-json
+    ]);
+    profiles.default.userSettings = {
+      "editor.fontFamily" = "'Izosevka', monospace";
+      "editor.fontSize" = 20;
+      "editor.fontLigatures" = true;
+      "terminal.integrated.fontFamily" = "'Izosevka'";
+      "terminal.integrated.fontSize" = 20;
+    };
+  };
+
   home.stateVersion = "25.11";
 }

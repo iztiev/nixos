@@ -31,4 +31,8 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
   };
+
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.nvidia # nvtop - htop for gpu
+  ];
 }

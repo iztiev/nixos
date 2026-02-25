@@ -139,7 +139,6 @@
     wget
     curl
     nvidia-vaapi-driver # Hardware video acceleration
-    izosevka # Custom Iosevka font variant
   ];
 
   system.stateVersion = "25.11";

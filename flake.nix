@@ -14,8 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
-
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,7 +35,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-#    izosevka.url = "github:iztiev/Izosevka";
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    izosevka = {
+      url = "github:iztiev/Izosevka";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, firefox-addons, plasma-manager, ... }: {
@@ -50,9 +56,9 @@
         ./modules/nixos
 
         inputs.lanzaboote.nixosModules.lanzaboote
-        inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.sops-nix.nixosModules.sops
         inputs.ncalayer.nixosModules.default
+        inputs.izosevka.nixosModules.default
 
         home-manager.nixosModules.home-manager
         {

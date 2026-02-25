@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   # Script to set printer quality defaults
+  # Run once after adding a printer to apply best-quality defaults
   setPrinterQuality = pkgs.writeShellScriptBin "set-printer-quality" ''
     #!/usr/bin/env bash
     # Set high-quality print defaults for all configured printers
@@ -10,24 +11,24 @@ let
     for printer in $(lpstat -p | awk '{print $2}'); do
       echo "Configuring $printer..."
 
-      # Set high quality/resolution (options vary by driver)
-      ${pkgs.cups}/bin/lpadmin -p "$printer" -o print-quality=5 2>/dev/null || true
-      ${pkgs.cups}/bin/lpadmin -p "$printer" -o PrintQuality=High 2>/dev/null || true
-      ${pkgs.cups}/bin/lpadmin -p "$printer" -o Quality=High 2>/dev/null || true
+      # epson-escpr (older PPD): uses a combined MediaType/Quality option
+      # PLAIN_HIGH = plain paper at high quality
+      ${pkgs.cups}/bin/lpadmin -p "$printer" -o MediaType=PLAIN_HIGH 2>/dev/null || true
 
-      # Set maximum resolution (common Epson settings)
-      ${pkgs.cups}/bin/lpadmin -p "$printer" -o Resolution=360dpi 2>/dev/null || true
-      ${pkgs.cups}/bin/lpadmin -p "$printer" -o EpsonInk=CMYK 2>/dev/null || true
+      # epson-escpr2 (newer PPD): separate MediaType and cupsPrintQuality options
+      ${pkgs.cups}/bin/lpadmin -p "$printer" -o cupsPrintQuality=High 2>/dev/null || true
 
-      # Set A4 as default paper size for this printer
+      # Set A4 as default paper size
       ${pkgs.cups}/bin/lpadmin -p "$printer" -o media=iso_a4_210x297mm 2>/dev/null || true
 
       echo "Done configuring $printer"
     done
 
     echo ""
-    echo "Print quality settings applied. To verify, run:"
+    echo "Print quality settings applied. To verify available options, run:"
     echo "  lpoptions -p <printer-name> -l"
+    echo "To check current defaults:"
+    echo "  lpoptions -p <printer-name>"
   '';
 in
 {
@@ -35,12 +36,14 @@ in
   services.printing = {
     enable = true;
     drivers = with pkgs; [
-      gutenprint              # High-quality printer drivers
-      epson-escpr             # Epson ESC/P-R driver
-      epson-escpr2            # Epson ESC/P-R driver (newer models)
+      cups-filters
+      epson-escpr             # Epson ESC/P-R driver (L-series EcoTank, older models)
+      epson-escpr2            # Epson ESC/P-R 2 driver (newer models)
+      # Note: gutenprint intentionally excluded — it provides generic PPDs that
+      # can override Epson's native driver and reduce print quality
     ];
 
-    # Set A4 as default paper size and high-quality defaults
+    # Set A4 as default paper size
     extraConf = ''
       DefaultPaperSize A4
     '';
@@ -56,15 +59,6 @@ in
     openFirewall = true;
   };
 
-  # ── Scanning (SANE) ──
-  hardware.sane = {
-    enable = true;
-    extraBackends = with pkgs; [
-      sane-airscan           # Network scanner support (eSCL/WSD)
-    ];
-    # Default sane-backends includes epson2 backend which supports L3258
-  };
-
   # Add user to scanner group
   users.users.iztiev.extraGroups = [ "scanner" "lp" ];
 
@@ -73,6 +67,7 @@ in
     system-config-printer  # GUI for managing printers
     simple-scan            # Simple scanning application
     libpaper               # Paper size configuration library
-    setPrinterQuality      # Script to set high-quality print defaults
+    setPrinterQuality      # Script to apply high-quality print defaults
+    # epsonscan2 GUI is installed via hardware.sane.extraBackends above
   ];
 }

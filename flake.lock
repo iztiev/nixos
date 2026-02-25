@@ -23,11 +23,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1771918157,
-        "narHash": "sha256-MU/9oxyXCRKyAskjSgku8P7r0XpQiE50tvDKkNDveJg=",
+        "lastModified": 1771992172,
+        "narHash": "sha256-XdaMLD1Gjev6i3tBeVFLORc1uLGNg9XbUf+LmxpGIYo=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "921c0db962c553e972d59c3563d29fd575437f03",
+        "rev": "0002367df8f1b5d8089eaf0314ddc4afe73b271a",
         "type": "gitlab"
       },
       "original": {
@@ -113,6 +113,26 @@
         "type": "github"
       }
     },
+    "izosevka": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772043129,
+        "narHash": "sha256-8m6R+udMwmTNTZ+lsM9wbbD184KzeAs3ZU5xCXa/5xY=",
+        "owner": "iztiev",
+        "repo": "Izosevka",
+        "rev": "007389e5e93ee761d31493be5c55f61714135b57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iztiev",
+        "repo": "Izosevka",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -145,11 +165,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771867866,
-        "narHash": "sha256-6sa4aggI3yIYLP513EY9Ii1xsjxT9Seuy8acqlWdyWw=",
+        "lastModified": 1772040260,
+        "narHash": "sha256-vlbqZ5bFtg3wMbECmoBAjbqRjcBJgBAW8F+QoyWe6Fc=",
         "owner": "iztiev",
         "repo": "NCALayer-Linux",
-        "rev": "219d4402deba8c0539f74b3f80a8bc006da1a3fb",
+        "rev": "e3cefb2c52efb8ce03c4b18784b918b5877123df",
         "type": "github"
       },
       "original": {
@@ -158,18 +178,23 @@
         "type": "github"
       }
     },
-    "nix-flatpak": {
+    "nix-vscode-extensions": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1768656715,
-        "narHash": "sha256-Sbh037scxKFm7xL0ahgSCw+X2/5ZKeOwI2clqrYr9j4=",
-        "owner": "gmodena",
-        "repo": "nix-flatpak",
-        "rev": "123fe29340a5b8671367055b75a6e7c320d6f89a",
+        "lastModified": 1771987561,
+        "narHash": "sha256-yuxNWLYBNfRIvRPhYMr3gAbi6WcoUilNyL5XyhGVPTA=",
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
+        "rev": "7c957808d97e3a738f420935ec4bc48ae766392d",
         "type": "github"
       },
       "original": {
-        "owner": "gmodena",
-        "repo": "nix-flatpak",
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
         "type": "github"
       }
     },
@@ -239,9 +264,10 @@
       "inputs": {
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
+        "izosevka": "izosevka",
         "lanzaboote": "lanzaboote",
         "ncalayer": "ncalayer",
-        "nix-flatpak": "nix-flatpak",
+        "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs",
         "plasma-manager": "plasma-manager",
         "sops-nix": "sops-nix"
@@ -275,11 +301,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771889317,
-        "narHash": "sha256-YV17Q5lEU0S9ppw08Y+cs4eEQJBuc79AzblFoHORLMU=",
+        "lastModified": 1772048434,
+        "narHash": "sha256-/wA0OaH6kZ/pFA+nXR/tvg5oupOmEDmMS5us79JT60o=",
         "owner": "mic92",
         "repo": "sops-nix",
-        "rev": "b027513c32e5b39b59f64626b87fbe168ae02094",
+        "rev": "334daa7c273dd8bf7a0cd370e4e16022b64e55e9",
         "type": "github"
       },
       "original": {

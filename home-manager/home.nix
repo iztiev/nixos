@@ -40,6 +40,10 @@
     # Internet
     chromium
     qbittorrent
+    postman
+    bitwarden-desktop
+    slack
+    telegram-desktop
 
     # Ofiice
     libreoffice-qt

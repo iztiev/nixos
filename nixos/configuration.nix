@@ -68,15 +68,6 @@
     options snd_ac97_codec power_save=0
   '';
 
-  # ── Flatpak ──
-  services.flatpak.enable = true;
-  services.flatpak.packages = [
-    "com.bitwarden.desktop"
-    "com.slack.Slack"
-    "org.telegram.desktop"
-  ];
-  services.flatpak.update.onActivation = true;
-
   # ── Electron/Chromium Wayland support ──
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 

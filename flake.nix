@@ -61,7 +61,6 @@
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.iztiev = import ./home-manager/home.nix;
           home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
-          home-manager.backupFileExtension = "backup";
         }
       ];
     };

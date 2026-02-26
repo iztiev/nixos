@@ -47,6 +47,9 @@
         "browser.formfill.enable" = false;   # Disable form autofill
         "browser.aboutConfig.showWarning" = false;
         "browser.compactmode.show" = true;
+
+        # Disable tab groups
+        "browser.tabs.groups.enabled" = false;
       };
     };
   };

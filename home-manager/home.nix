@@ -82,6 +82,7 @@
       jnoortheen.nix-ide
     ] ++ (with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
       mohsen1.prettify-json
+      wholroyd.jinja
     ]);
     profiles.default.userSettings = {
       "editor.fontFamily" = "'Izosevka', monospace";

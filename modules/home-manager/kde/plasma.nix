@@ -5,6 +5,10 @@
   programs.plasma = {
     enable = true;
 
+    workspace = {
+      lookAndFeel = "org.kde.breezedark.desktop";
+    };
+
     # Configure scaling through config files
     # Adjust values as needed: 1 = 100%, 1.25 = 125%, 1.5 = 150%, 2 = 200%
     configFile = {

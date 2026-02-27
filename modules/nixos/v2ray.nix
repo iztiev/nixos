@@ -47,6 +47,16 @@
             },
             {
               "type": "field",
+              "ip": [
+                "127.0.0.0/8",
+                "192.0.0.0/8",
+                "172.0.0.0/8",
+                "10.0.0.0/6"
+              ],
+              "outboundTag": "direct"
+            },
+            {
+              "type": "field",
               "network": "tcp,udp",
               "outboundTag": "proxy"
             }

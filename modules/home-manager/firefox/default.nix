@@ -50,6 +50,16 @@
 
         # Disable tab groups
         "browser.tabs.groups.enabled" = false;
+
+        # Block all notification permission requests
+        "permissions.default.desktop-notification" = 2;
+
+        # SOCKS5 proxy
+        "network.proxy.type" = 1;
+        "network.proxy.socks" = "127.0.0.1";
+        "network.proxy.socks_port" = 1080;
+        "network.proxy.socks_version" = 5;
+        "network.proxy.socks_remote_dns" = true;
       };
     };
   };

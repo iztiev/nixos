@@ -81,7 +81,14 @@
               ]
             },
             "streamSettings": {
-              "network": "tcp"
+              "network": "ws",
+              "security": "tls",
+              "tlsSettings": {
+                "serverName": "${config.sops.placeholder.vmess-address}"
+              },
+              "wsSettings": {
+                "path": "/ray"
+              }
             },
             "tag": "proxy"
           },

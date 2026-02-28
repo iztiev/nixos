@@ -106,7 +106,7 @@
       {
         key = "ctrl+shift+c";
         command = "workbench.action.terminal.sendSequence";
-        args = { text = "\\u0003"; };
+        args = { text = builtins.fromJSON ''"\u0003"''; };
         when = "terminalFocus";
       }
       # Terminal: Ctrl+V = paste

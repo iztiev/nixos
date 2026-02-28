@@ -1,15 +1,23 @@
 { ... }:
 
 {
-  # KDE Konsole configuration
-  xdg.configFile."konsolerc" = {
-    source = ./files/konsolerc;
-    force = true;
-  };
+  programs.konsole = {
+    enable = true;
+    defaultProfile = "Izosevka";
 
-  # KDE Konsole profile (in ~/.local/share/konsole/)
-  xdg.dataFile."konsole/Izosevka.profile" = {
-    source = ./files/Izosevka.profile;
-    force = true;
+    profiles.Izosevka = {
+      font = {
+        name = "Izosevka";
+        size = 16;
+      };
+      extraConfig = {
+        Scrolling.HistoryMode = 2;
+      };
+    };
+
+    extraConfig = {
+      KonsoleWindow.ShowMenuBarByDefault = false;
+      "Notification Messages".CloseSessionsWithProcesses = false;
+    };
   };
 }

@@ -1,5 +1,34 @@
 { lib, ... }:
 
+let
+  launchers = [
+    "applications:org.kde.dolphin.desktop"
+    "applications:org.kde.konsole.desktop"
+    "applications:firefox.desktop"
+    "applications:chromium-browser.desktop"
+    "applications:pycharm.desktop"
+    "applications:webstorm.desktop"
+  ];
+
+  panelWidgets = [
+    { kickoff = {}; }
+    {
+      iconTasks = {
+        launchers = launchers;
+        behavior = {
+          grouping.method = "none";
+          middleClickAction = "close";
+          showTasks.onlyInCurrentScreen = true;
+        };
+      };
+    }
+    "org.kde.plasma.marginsseparator"
+    { systemTray = {}; }
+    { digitalClock = {}; }
+    "org.kde.plasma.showdesktop"
+  ];
+in
+
 {
   # ── Desktop Entries for JetBrains IDEs ──
   # Fix taskbar icons by creating custom desktop entries
@@ -35,16 +64,14 @@
     };
   };
 
-  # ── KDE Plasma Desktop Applets Configuration ──
-  # Declaratively manage Plasma desktop panel layout and applets
-  xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc" = {
-    source = ./files/plasma-org.kde.plasma.desktop-appletsrc;
-    force = true;
-  };
-
-  # KDE Plasma Shell configuration
-  xdg.configFile."plasmashellrc" = {
-    source = ./files/plasmashellrc;
-    force = true;
-  };
+  # ── KDE Plasma Panels ──
+  programs.plasma.panels = [
+    {
+      location = "bottom";
+      height = 44;
+      floating = true;
+      screen = [ 0 1 ];
+      widgets = panelWidgets;
+    }
+  ];
 }

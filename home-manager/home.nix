@@ -91,6 +91,31 @@
       "terminal.integrated.fontFamily" = "'Izosevka'";
       "terminal.integrated.fontSize" = 20;
     };
+    profiles.default.keybindings = [
+      # Terminal: Ctrl+C = copy (not interrupt)
+      {
+        key = "ctrl+c";
+        command = "workbench.action.terminal.copySelection";
+        when = "terminalFocus && terminalHasBeenCreated";
+      }
+      # Terminal: Ctrl+Shift+C = interrupt (send ^C to process); remove default copy
+      {
+        key = "ctrl+shift+c";
+        command = "-workbench.action.terminal.copySelection";
+      }
+      {
+        key = "ctrl+shift+c";
+        command = "workbench.action.terminal.sendSequence";
+        args = { text = "\\u0003"; };
+        when = "terminalFocus";
+      }
+      # Terminal: Ctrl+V = paste
+      {
+        key = "ctrl+v";
+        command = "workbench.action.terminal.paste";
+        when = "terminalFocus && terminalHasBeenCreated";
+      }
+    ];
   };
 
   home.stateVersion = "25.11";

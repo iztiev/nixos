@@ -41,7 +41,9 @@
               "domain": [
                 "iztiev.dev",
                 "drive.iztiev.dev",
-                "vr.iztiev.dev"
+                "vr.iztiev.dev",
+                "kz",
+                "ru"
               ],
               "outboundTag": "direct"
             },

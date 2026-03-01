@@ -30,6 +30,7 @@ with lib;
         sddm-kcm         # SDDM settings in System Settings
         partitionmanager # KDE Partition Manager
         kcalc
+        dragon
       ];
       description = "Additional KDE packages to install";
     };

@@ -4,6 +4,9 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ (import ../overlays/default.nix) ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  systemd.services.nix-daemon.environment = {
+    https_proxy = "socks5h://127.0.0.1:1080";
+  };
 
   # ── Boot ──
   boot.loader.efi.canTouchEfiVariables = true;
@@ -12,7 +15,7 @@
   boot.loader.systemd-boot.editor = false;
 
   # Use latest kernel
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # LUKS tuning for NVMe SSDs
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/2029b089-eab2-4923-95ef-b94b757f5f74";

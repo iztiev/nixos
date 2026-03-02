@@ -42,6 +42,7 @@
                 "iztiev.dev",
                 "drive.iztiev.dev",
                 "vr.iztiev.dev",
+                "d-cd.net",
                 "kz",
                 "ru"
               ],

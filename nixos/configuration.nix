@@ -46,6 +46,10 @@
   # ── Locale & Time ──
   time.timeZone = "Asia/Almaty";
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "de_DE.UTF-8/UTF-8" "ru_RU.UTF-8/UTF-8" ];
+  i18n.extraLocaleSettings.LC_TIME = "de_DE.UTF-8";    # DD.MM.YYYY date format, 24-hour clock
+  i18n.extraLocaleSettings.LC_NUMERIC = "ru_RU.UTF-8"; # 1 234 567,89 number format
+  i18n.extraLocaleSettings.LC_PAPER = "de_DE.UTF-8";   # A4 paper format
 
   # ── Audio (PipeWire — required for Wayland screen sharing) ──
   services.pipewire = {

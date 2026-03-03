@@ -55,6 +55,13 @@
 
       # Caps Lock as keyboard layout toggle (not exposed as high-level option)
       kxkbrc.Layout.Options = "grp:caps_toggle";
+
+      # DD.MM.YYYY date format, 24-hour clock (matches system LC_TIME = de_DE.UTF-8)
+      "plasma-localerc".Formats.LC_TIME = "de_DE.UTF-8";
+      # 1 234 567,89 number format (matches system LC_NUMERIC = ru_RU.UTF-8)
+      "plasma-localerc".Formats.LC_NUMERIC = "ru_RU.UTF-8";
+      # A4 paper format (matches system LC_PAPER = de_DE.UTF-8)
+      "plasma-localerc".Formats.LC_PAPER = "de_DE.UTF-8";
     };
   };
 

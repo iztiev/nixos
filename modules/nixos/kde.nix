@@ -27,7 +27,6 @@ with lib;
     extraPackages = mkOption {
       type = types.listOf types.package;
       default = with pkgs.kdePackages; [
-        sddm-kcm         # SDDM settings in System Settings
         partitionmanager # KDE Partition Manager
         kcalc
         dragon
@@ -60,11 +59,8 @@ with lib;
     # ── Desktop Environment: KDE Plasma 6 ──
     services.desktopManager.plasma6.enable = true;
 
-    # ── Display Manager: SDDM (Wayland) ──
-    services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true; # Run SDDM itself on Wayland
-    };
+    # ── Display Manager: Plasma Login Manager ──
+    services.displayManager.plasma-login-manager.enable = true;
 
     # ── Auto-login ──
     services.displayManager.autoLogin = mkIf config.services.kde.autoLogin.enable {

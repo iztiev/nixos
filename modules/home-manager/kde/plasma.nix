@@ -15,6 +15,7 @@
           { layout = "us"; }
           { layout = "ru"; }
         ];
+        options = [ "grp:caps_toggle" ];
       };
 
       mice = [
@@ -52,9 +53,6 @@
         loginMode = "emptySession";
         confirmLogout = false;
       };
-
-      # Caps Lock as keyboard layout toggle (not exposed as high-level option)
-      kxkbrc.Layout.Options = "grp:caps_toggle";
 
       # DD.MM.YYYY date format, 24-hour clock (matches system LC_TIME = de_DE.UTF-8)
       "plasma-localerc".Formats.LC_TIME = "de_DE.UTF-8";

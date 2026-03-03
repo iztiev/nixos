@@ -51,8 +51,9 @@
         # Disable tab groups
         "browser.tabs.groups.enabled" = false;
 
-        # Block all notification permission requests
+        # Block all notification and location permission requests
         "permissions.default.desktop-notification" = 2;
+        "permissions.default.geo" = 2;
 
         # SOCKS5 proxy
         "network.proxy.type" = 1;

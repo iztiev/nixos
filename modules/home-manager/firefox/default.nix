@@ -66,6 +66,9 @@
         # Disable tab groups
         "browser.tabs.groups.enabled" = false;
 
+        # Use KDE file picker via XDG portal
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
+
         # Block all notification and location permission requests
         "permissions.default.desktop-notification" = 2;
         "permissions.default.geo" = 2;

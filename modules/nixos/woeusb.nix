@@ -18,7 +18,7 @@ with lib;
     # WoeUSB is a tool for creating Windows installation USB drives from Linux
     # Supports both Legacy BIOS and UEFI boot modes
     environment.systemPackages = with pkgs; [
-      woeusb           # Main WoeUSB tool with UEFI:NTFS support
+      woeusb-ng           # Main WoeUSB tool with UEFI:NTFS support
 
       # Additional tools for USB management
       parted           # Partition management

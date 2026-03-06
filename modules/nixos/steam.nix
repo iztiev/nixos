@@ -64,4 +64,5 @@ with lib;
       SDL_VIDEODRIVER = "wayland";
       ENABLE_VKBASALT = "1";
     };
+  };
 }

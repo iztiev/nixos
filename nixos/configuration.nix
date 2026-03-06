@@ -12,7 +12,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 20;
-  boot.loader.systemd-boot.editor = false;
+  boot.loader.systemd-boot.editor = true;
+
+  # Large NVMEs support
+  boot.kernelParams = [ "amd_iommu=off" ];
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;

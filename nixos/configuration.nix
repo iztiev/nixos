@@ -136,7 +136,7 @@
   users.users.iztiev = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.iztiev-password.path;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "video" ];
   };
 
   # ── System Packages ──

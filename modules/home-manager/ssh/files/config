@@ -38,5 +38,7 @@ Host 10.98.81.14
   IdentityFile ~/.ssh/id_dilcher
 Host 89.167.124.169
   IdentityFile ~/.ssh/id_dilcher
+Host 213.133.100.158
+  IdentityFile ~/.ssh/id_dilcher
 Host *
   ServerAliveInterval 100

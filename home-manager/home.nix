@@ -41,6 +41,7 @@
     bitwarden-desktop
     slack
     telegram-desktop
+    discord
 
     # Ofiice
     libreoffice-qt

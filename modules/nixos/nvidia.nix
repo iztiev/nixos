@@ -22,25 +22,25 @@
     nvidiaSettings = true;
 
     # CachyOS fix for Linux 6.19+ kernel
-    package = 
-    let
-      base = config.boot.kernelPackages.nvidiaPackages.latest;
-      cachyos-nvidia-patch = pkgs.fetchpatch {
-        url="https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/master/nvidia/nvidia-utils/kernel-6.19.patch";
-        sha256="sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=";
-      };
+    # package = 
+    # let
+    #   base = config.boot.kernelPackages.nvidiaPackages.latest;
+    #   cachyos-nvidia-patch = pkgs.fetchpatch {
+    #     url="https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/master/nvidia/nvidia-utils/kernel-6.19.patch";
+    #     sha256="sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=";
+    #   };
 
-      driverAttr = if config.hardware.nvidia.open then "open" else "bin";
-    in
-    base
-    // {
-        ${driverAttr} = base.${driverAttr}.overrideAttrs (oldAttrs: {
-          patches = (oldAttrs.patches or [ ]) ++ [ cachyos-nvidia-patch ];
-        });
-      };
+    #   driverAttr = if config.hardware.nvidia.open then "open" else "bin";
+    # in
+    # base
+    # // {
+    #     ${driverAttr} = base.${driverAttr}.overrideAttrs (oldAttrs: {
+    #       patches = (oldAttrs.patches or [ ]) ++ [ cachyos-nvidia-patch ];
+    #     });
+    #   };
 
     # Driver branch: stable (default), beta, or production
-    # package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
   # ── Wayland + NVIDIA environment variables ──

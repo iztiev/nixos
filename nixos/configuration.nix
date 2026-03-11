@@ -48,6 +48,7 @@
 
   # ── Locale & Time ──
   time.timeZone = "Asia/Almaty";
+  time.hardwareClockInLocalTime = true; # Windows dual-boot: keep RTC in local time
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "de_DE.UTF-8/UTF-8" "ru_RU.UTF-8/UTF-8" ];
   i18n.extraLocaleSettings.LC_TIME = "de_DE.UTF-8";    # DD.MM.YYYY date format, 24-hour clock
@@ -86,6 +87,9 @@
 
   # ── Steam ──
   services.steam.enable = true;
+
+  # ── Flatpak ──
+  services.flatpak.enable = true;
 
   # ── WoeUSB ──
   programs.woeusb.enable = true;

@@ -45,6 +45,9 @@
 
     # Ofiice
     libreoffice-qt
+
+    # Sound
+    easyeffects
   ];
 
   # ── Shell ──

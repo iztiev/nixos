@@ -20,6 +20,14 @@
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Simagic force feedback wheel driver
+  # boot.extraModulePackages = [
+  #   (config.boot.kernelPackages.callPackage ../pkgs/simagic-ff.nix { })
+  # ];
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", ATTRS{idVendor}=="3670", MODE="0666", TAG+="uaccess"
+  '';
+
   # LUKS tuning for NVMe SSDs
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/2029b089-eab2-4923-95ef-b94b757f5f74";
   boot.initrd.luks.devices."cryptroot".allowDiscards = true;
@@ -89,7 +97,7 @@
   services.steam.enable = true;
 
   # ── Flatpak ──
-  services.flatpak.enable = true;
+  services.flatpak.enable = false;
 
   # ── WoeUSB ──
   programs.woeusb.enable = true;

@@ -20,6 +20,7 @@ with lib;
       default = with pkgs.kdePackages; [
         elisa    # Music player
         kwrited  # Wall message daemon
+        discover # KDE Discover (includes Flatpak/Flathub backend)
       ];
       description = "KDE packages to exclude from the default installation";
     };

@@ -15,7 +15,7 @@
   boot.loader.systemd-boot.editor = true;
 
   # Large NVMEs support
-  boot.kernelParams = [ "amd_iommu=off" ];
+  boot.kernelParams = [ "amd_iommu=pt" ];
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;

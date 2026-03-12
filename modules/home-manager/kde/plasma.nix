@@ -48,6 +48,9 @@
         TabBox.MultiScreenMode = 1;
       };
 
+      # Klipper clipboard history
+      klipperrc.General.MaxClipItems = 50;
+
       # Session Management - start with empty session
       ksmserverrc.General = {
         loginMode = "emptySession";

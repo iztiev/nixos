@@ -9,5 +9,6 @@
     ./docker.nix
     ./woeusb.nix
     ./v2ray.nix
+    ./wifi-hotspot.nix
   ];
 }

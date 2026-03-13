@@ -15,7 +15,7 @@
   boot.loader.systemd-boot.editor = true;
 
   # Large NVMEs support
-  boot.kernelParams = [ "amd_iommu=pt" ];
+  boot.kernelParams = [ "amd_iommu=off" ];
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -36,6 +36,16 @@
   # AMD CPU
   boot.kernelModules = [ "kvm-amd" ];
   hardware.cpu.amd.updateMicrocode = true;
+
+  # ── WiFi Hotspot ──
+  services.wifi-hotspot = {
+    enable = true;
+    ssid = "rhea-ap";
+    passphraseFile = config.sops.secrets.wifi-passphrase.path;
+    # wifiInterface = "wlan0";    # default
+    # ethernetInterface = "enp7s0"; # default
+    # subnetPrefix = "192.168.4";   # default → 192.168.4.0/24
+  };
 
   # ── Networking ──
   networking.hostName = "rhea";

@@ -174,8 +174,8 @@ in
       iptables -A FORWARD -i ${cfg.ethernetInterface} -o ${cfg.wifiInterface} \
         -m state --state RELATED,ESTABLISHED -j ACCEPT
 
-      # Masquerade outgoing packets so WiFi clients appear as this machine.
-      iptables -t nat -A POSTROUTING -o ${cfg.ethernetInterface} -j MASQUERADE
+      # Masquerade outgoing packets from hotspot clients so they appear as this machine.
+      iptables -t nat -A POSTROUTING -s ${cfg.subnetPrefix}.0/24 -o ${cfg.ethernetInterface} -j MASQUERADE
 
       # ── Transparent proxy (TCP only) ──────────────────────────────────────
       # Skip redirect for private/local destinations — let them go direct.
@@ -192,7 +192,7 @@ in
       iptables -D FORWARD -i ${cfg.wifiInterface} -o ${cfg.ethernetInterface} -j ACCEPT 2>/dev/null || true
       iptables -D FORWARD -i ${cfg.ethernetInterface} -o ${cfg.wifiInterface} \
         -m state --state RELATED,ESTABLISHED -j ACCEPT 2>/dev/null || true
-      iptables -t nat -D POSTROUTING -o ${cfg.ethernetInterface} -j MASQUERADE 2>/dev/null || true
+      iptables -t nat -D POSTROUTING -s ${cfg.subnetPrefix}.0/24 -o ${cfg.ethernetInterface} -j MASQUERADE 2>/dev/null || true
       iptables -t nat -D PREROUTING -i ${cfg.wifiInterface} -d 10.0.0.0/8     -p tcp -j RETURN 2>/dev/null || true
       iptables -t nat -D PREROUTING -i ${cfg.wifiInterface} -d 172.16.0.0/12  -p tcp -j RETURN 2>/dev/null || true
       iptables -t nat -D PREROUTING -i ${cfg.wifiInterface} -d 192.168.0.0/16 -p tcp -j RETURN 2>/dev/null || true
@@ -200,8 +200,11 @@ in
         -j REDIRECT --to-port ${toString tproxyPort} 2>/dev/null || true
     '';
 
-    # Unblock WiFi rfkill before hostapd starts (soft-blocked by default).
+    # Unblock WiFi rfkill after NetworkManager finishes its own rfkill management.
+    # Without After=NetworkManager, NM re-soft-blocks wifi right after hostapd
+    # enables the AP, causing INTERFACE-DISABLED at boot.
     systemd.services.hostapd = {
+      after = [ "NetworkManager.service" ];
       path = [ pkgs.util-linux ];
       preStart = "rfkill unblock wifi";
     };

@@ -48,6 +48,7 @@
 
     # Sound
     easyeffects
+    yandex-music
   ];
 
   # ── Shell ──

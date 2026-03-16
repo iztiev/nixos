@@ -49,6 +49,7 @@
                   "iztiev.dev",
                   "drive.iztiev.dev",
                   "vr.iztiev.dev",
+                  "yandex.com",
                   "d-cd.net",
                   "kz",
                   "ru"
@@ -61,7 +62,7 @@
                   "127.0.0.0/8",
                   "192.0.0.0/8",
                   "172.0.0.0/8",
-                  "10.0.0.0/6"
+                  "10.0.0.0/8"
                 ],
                 "outboundTag": "direct"
               },

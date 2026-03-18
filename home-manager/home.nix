@@ -43,6 +43,9 @@
     telegram-desktop
     discord
 
+    # networking
+    traceroute
+
     # Ofiice
     libreoffice-qt
 

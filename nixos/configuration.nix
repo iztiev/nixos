@@ -1,8 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   # ── Nix Settings ──
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ (import ../overlays/default.nix) ];
+  nixpkgs.overlays = [ (import ../overlays/default.nix { inherit inputs; system = "x86_64-linux"; }) ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   systemd.services.nix-daemon.environment = {
     https_proxy = "socks5h://127.0.0.1:1080";

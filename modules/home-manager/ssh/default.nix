@@ -58,18 +58,18 @@
     fi
   '';
 
-  # Build id_iztiev.pub using the email-gmail secret
+  # Build id_iztiev.pub using the email-proton secret
   home.activation.sshIztievPubKey = config.lib.dag.entryAfter ["writeBoundary"] ''
-    if [ -f /run/secrets/email-gmail ]; then
-      EMAIL_GMAIL=$(cat /run/secrets/email-gmail)
-      SSH_PUB_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH/gHKm75N4OZmAWl/NjzNSGVJFlcN8nqMiElDQoTgzF $EMAIL_GMAIL"
+    if [ -f /run/secrets/email-proton ]; then
+      EMAIL_PROTON=$(cat /run/secrets/email-proton)
+      SSH_PUB_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEQc892IeAUy+SlNx5dFPy8f7VVuwumx+EG+3HicUzc9 $EMAIL_PROTON"
 
       mkdir -p "$HOME/.ssh"
       echo "$SSH_PUB_KEY" > "$HOME/.ssh/id_iztiev.pub"
       $DRY_RUN_CMD chmod 644 "$HOME/.ssh/id_iztiev.pub"
       echo "Created id_iztiev.pub with email from sops secret"
     else
-      echo "Warning: /run/secrets/email-gmail not found, skipping id_iztiev.pub creation"
+      echo "Warning: /run/secrets/email-proton not found, skipping id_iztiev.pub creation"
     fi
   '';
 
@@ -85,6 +85,21 @@
       echo "Created id_hetzner.pub with email from sops secret"
     else
       echo "Warning: /run/secrets/email-proton not found, skipping id_hetzner.pub creation"
+    fi
+  '';
+
+  # Build id_megahost.pub using the email-megahost secret
+  home.activation.sshMegahostPubKey = config.lib.dag.entryAfter ["writeBoundary"] ''
+    if [ -f /run/secrets/email-megahost ]; then
+      EMAIL_MEGAHOST=$(cat /run/secrets/email-megahost)
+      SSH_PUB_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOzFFQxALi+W2+uSEM1wzgu6pjOuEEdM6884KA7M1c5F $EMAIL_MEGAHOST"
+
+      mkdir -p "$HOME/.ssh"
+      echo "$SSH_PUB_KEY" > "$HOME/.ssh/id_megahost.pub"
+      $DRY_RUN_CMD chmod 644 "$HOME/.ssh/id_megahost.pub"
+      echo "Created id_megahost.pub with email from sops secret"
+    else
+      echo "Warning: /run/secrets/email-megahost not found, skipping id_megahost.pub creation"
     fi
   '';
 }

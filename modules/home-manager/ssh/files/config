@@ -16,6 +16,8 @@ Host iztiev.dev
   IdentityFile ~/.ssh/id_hetzner
 Host *.iztiev.dev
   IdentityFile ~/.ssh/id_hetzner
+Host stoat.iztiev.dev
+  IdentityFile ~/.ssh/id_meganet
 Host *.embeddings.sx
   IdentityFile ~/.ssh/id_dilcher
 Host *.liquid.mx

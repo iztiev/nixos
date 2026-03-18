@@ -30,6 +30,10 @@
                 owner = "iztiev";
                 mode = "0400";
             };
+            email-megahost = {
+                owner = "iztiev";
+                mode = "0400";
+            };
             nexus-login = {
                 owner = "iztiev";
                 mode = "0400";
@@ -59,6 +63,11 @@
             };
             "private_keys/id_iztiev" = {
                 path = "/home/iztiev/.ssh/id_iztiev";
+                owner = "iztiev";
+                mode = "0400";
+            };
+            "private_keys/id_megahost" = {
+                path = "/home/iztiev/.ssh/id_megahost";
                 owner = "iztiev";
                 mode = "0400";
             };

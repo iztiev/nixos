@@ -31,6 +31,11 @@
                 owner = "iztiev";
                 mode = "0400";
             };
+            "private_keys/id_megahost" = {
+                path = "/home/iztiev/.ssh/id_megahost";
+                owner = "iztiev";
+                mode = "0400";
+            };
             "email-work" = {
                 path = "/run/secrets/email-work";
                 owner = "iztiev";
@@ -43,6 +48,11 @@
             };
             "email-proton" = {
                 path = "/run/secrets/email-proton";
+                owner = "iztiev";
+                mode = "0400";
+            };
+            "email-megahost" = {
+                path = "/run/secrets/email-megahost";
                 owner = "iztiev";
                 mode = "0400";
             };

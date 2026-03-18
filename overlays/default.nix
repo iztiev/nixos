@@ -5,5 +5,5 @@ final: prev:
     stable = inputs.nixpkgs-stable.legacyPackages.${system};
   in
   customPkgs // {
-    bitwarden-desktop = stable.bitwarden-desktop; # TODO remove after it is fixed
+    #bitwarden-desktop = stable.bitwarden-desktop; # example how to use package from stable channel
   }

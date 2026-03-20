@@ -48,6 +48,8 @@
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
+    # Expose NVIDIA/CUDA libraries to prebuilt binaries (e.g. LM Studio)
+    LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib";
   };
 
   environment.systemPackages = with pkgs; [

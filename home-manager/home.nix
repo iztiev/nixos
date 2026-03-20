@@ -42,6 +42,7 @@
     slack
     telegram-desktop
     discord
+    stoat-desktop
 
     # networking
     traceroute

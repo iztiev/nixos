@@ -112,10 +112,17 @@
   # ── WoeUSB ──
   programs.woeusb.enable = true;
 
+  programs.nix-ld.enable = true;
+
   # ── NCALayer ──
   programs.ncalayer = {
     enable = true;
     installCerts = true;
+  };
+
+  xdg.portal = {                                                                                                                                                                                                                                                                                                                                               
+    enable = true;                                                                                                                                                                                                                                                                                                                                             
+    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];                                                                                                                                                                                                                                                                                                        
   };
 
   # ── Sops Configuration ──

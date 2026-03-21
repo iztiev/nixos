@@ -45,6 +45,11 @@
       url = "github:iztiev/Izosevka";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stoat-desktop = {                                                                                                                                                                                                                                                                                                                                            
+      url = "github:iztiev/stoat-desktop";
+      inputs.nixpkgs.follows = "nixpkgs";                                                                                                                                                                                                                                                                                                                        
+    };  
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, firefox-addons, plasma-manager, ... }: {
@@ -60,6 +65,7 @@
         inputs.sops-nix.nixosModules.sops
         inputs.ncalayer.nixosModules.default
         inputs.izosevka.nixosModules.default
+        { nixpkgs.overlays = [ inputs.stoat-desktop.overlays.default ]; }
 
         home-manager.nixosModules.home-manager
         {

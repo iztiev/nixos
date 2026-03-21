@@ -67,5 +67,23 @@
     };
   };
 
+  # ── Keep Microlab Solo 3 speakers awake ──
+  # The Solo 3 has an auto-standby that cuts power after detecting silence.
+  # Playing a 100 Hz sine at 0.5% volume keeps the DAC output active.
+  systemd.user.services.keep-speakers-alive = {
+    Unit = {
+      Description = "Prevent Microlab Solo 3 auto-shutoff";
+      After = "pipewire.service";
+    };
+    Service = {
+      Environment = "PULSE_SINK=alsa_output.pci-0000_74_00.6.analog-stereo";
+      ExecStart = "${pkgs.sox}/bin/play -n synth sine 100 vol 0.005";
+      Restart = "always";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
   home.stateVersion = "25.11";
 }

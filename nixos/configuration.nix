@@ -124,6 +124,9 @@
   # ── Flatpak ──
   services.flatpak.enable = false;
 
+  # ── Windows VM (raw disk passthrough from nvme1n1) ──
+  services.windows-vm.enable = true;
+
   # ── WoeUSB ──
   programs.woeusb.enable = true;
 

@@ -89,6 +89,21 @@
         }
       '')
     ];
+    # Pin SoX (keep-speakers-alive) directly to the analog speaker sink,
+    # bypassing EasyEffects so the tone doesn't follow the default sink.
+    extraConfig.pipewire-pulse."52-sox-speaker-only" = {
+      "pulse.rules" = [
+        {
+          matches = [ { "application.name" = "SoX"; } ];
+          actions = {
+            update-props = {
+              "node.target" = "alsa_output.pci-0000_74_00.6.analog-stereo";
+              "stream.dont-move" = true;
+            };
+          };
+        }
+      ];
+    };
   };
 
   # Disable ALSA power saving (prevents hardware from sleeping)

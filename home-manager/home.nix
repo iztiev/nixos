@@ -79,7 +79,7 @@
     };
     Service = {
       Environment = "PULSE_SINK=alsa_output.pci-0000_74_00.6.analog-stereo";
-      ExecStart = "${pkgs.sox}/bin/play -n synth whitenoise vol 0.0001";
+      ExecStart = "${pkgs.sox}/bin/play -n synth whitenoise vol 0.0005";
       Restart = "always";
     };
     Install = {

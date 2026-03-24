@@ -21,7 +21,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Simagic force feedback wheel driver (Alpha EVO Pro)
-  services.simagic-ff.enable = true;
+  services.simagic-ff.enable = false;
 
   # LUKS tuning for NVMe SSDs
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/2029b089-eab2-4923-95ef-b94b757f5f74";
@@ -119,12 +119,12 @@
 
   # ── Steam ──
   services.steam.enable = true;
-  services.steam.leManUltimate = true;
+  services.steam.leManUltimate = false;
 
   # ── Flatpak ──
   services.flatpak.enable = false;
 
-  # ── Windows VM (raw disk passthrough from nvme1n1) ──
+  # ── Windows VM (raw disk passthrough from Patriot P400L NVMe) ──
   services.windows-vm.enable = true;
 
   # ── WoeUSB ──

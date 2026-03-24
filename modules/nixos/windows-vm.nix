@@ -135,8 +135,8 @@ in
 
     disk = mkOption {
       type = types.str;
-      default = "/dev/nvme1n1";
-      description = "Block device containing the Windows installation.";
+      default = "/dev/disk/by-id/nvme-Patriot_P400L_4000GB_P400LDDBA25050890007";
+      description = "Block device containing the Windows installation. Use a /dev/disk/by-id/ path for stability across reboots.";
     };
 
     stateDir = mkOption {

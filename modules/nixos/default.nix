@@ -11,5 +11,6 @@
     ./v2ray.nix
     ./wifi-hotspot.nix
     ./windows-vm.nix
+    ./simagic-ff.nix
   ];
 }

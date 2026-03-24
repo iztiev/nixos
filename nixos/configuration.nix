@@ -20,13 +20,8 @@
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Simagic force feedback wheel driver
-  # boot.extraModulePackages = [
-  #   (config.boot.kernelPackages.callPackage ../pkgs/simagic-ff.nix { })
-  # ];
-  services.udev.extraRules = ''
-    KERNEL=="hidraw*", ATTRS{idVendor}=="3670", MODE="0666", TAG+="uaccess"
-  '';
+  # Simagic force feedback wheel driver (Alpha EVO Pro)
+  services.simagic-ff.enable = true;
 
   # LUKS tuning for NVMe SSDs
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/2029b089-eab2-4923-95ef-b94b757f5f74";
@@ -57,6 +52,10 @@
 
   # ── ZeroTier ──
   services.zerotierone.enable = true;
+  systemd.services.zerotierone = {
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+  };
 
   # ── Docker ──
   services.docker-custom = {
@@ -120,6 +119,7 @@
 
   # ── Steam ──
   services.steam.enable = true;
+  services.steam.leManUltimate = true;
 
   # ── Flatpak ──
   services.flatpak.enable = false;

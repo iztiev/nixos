@@ -34,9 +34,7 @@ Host *.liquid.pm
   IdentityFile ~/.ssh/id_dilcher
 Host zt.moon.backend.sx
   IdentityFile ~/.ssh/id_dilcher
-Host 10.98.81.94
-  IdentityFile ~/.ssh/id_dilcher
-Host 10.98.81.14
+Host 10.98.81.*
   IdentityFile ~/.ssh/id_dilcher
 Host 89.167.124.169
   IdentityFile ~/.ssh/id_dilcher

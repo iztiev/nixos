@@ -51,6 +51,7 @@
     libreoffice-qt
 
     # Sound
+    sox
     easyeffects
     yandex-music
   ];
@@ -66,6 +67,26 @@
       cleanup = "sudo nix-env --delete-generations +2 --profile /nix/var/nix/profiles/system && nix-env --delete-generations +2 && sudo nix-collect-garbage -d && before=$(du -sb /nix/store | cut -f1) && sudo nix store optimise && after=$(du -sb /nix/store | cut -f1) && saved=$((before-after)) && echo Optimise freed: $(numfmt --to=iec-i --suffix=B $saved)";
       windows = "sudo --preserve-env=DISPLAY,WAYLAND_DISPLAY windows-vm";
     };
+  };
+
+  # ── Keep Speakers Alive ──
+  # Play inaudible white noise every 9 minutes to prevent speakers from sleeping
+  systemd.user.services.keep-speakers-alive = {
+    Unit.Description = "Play white noise to keep speakers alive";
+    Service = {
+      Type = "oneshot";
+      Environment = "PULSE_SINK=alsa_output.pci-0000_74_00.6.analog-stereo";
+      ExecStart = "${pkgs.sox}/bin/play -n -c1 synth 3 whitenoise band -n 19000 20 fade h 1 2 1 vol 0.1";
+    };
+  };
+
+  systemd.user.timers.keep-speakers-alive = {
+    Unit.Description = "Keep speakers alive timer";
+    Timer = {
+      OnBootSec = "1min";
+      OnUnitActiveSec = "9min";
+    };
+    Install.WantedBy = [ "timers.target" ];
   };
 
   home.stateVersion = "25.11";

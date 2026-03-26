@@ -57,6 +57,9 @@
     wants = [ "network-online.target" ];
   };
 
+  # ── Tailscale ──
+  services.tailscale.enable = true;
+
   # ── Docker ──
   services.docker-custom = {
     enable = true;

@@ -35,6 +35,7 @@
     unzip
 
     # Internet
+    remmina
     chromium
     qbittorrent
     postman

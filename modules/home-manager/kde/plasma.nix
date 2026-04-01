@@ -15,7 +15,7 @@
           { layout = "us"; }
           { layout = "ru"; }
         ];
-        options = [ "grp:caps_toggle" ];
+        options = [ "grp:alt_shift_toggle" ];
       };
 
       mice = [

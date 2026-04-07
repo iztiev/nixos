@@ -44,6 +44,7 @@
     telegram-desktop
     discord
     stoat-desktop
+    wowup-cf
 
     # networking
     traceroute

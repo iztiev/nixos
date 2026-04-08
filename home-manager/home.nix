@@ -68,6 +68,7 @@
       update = "nix flake update --flake ~/nixos";
       cleanup = "sudo nix-env --delete-generations +2 --profile /nix/var/nix/profiles/system && nix-env --delete-generations +2 && sudo nix-collect-garbage -d && before=$(du -sb /nix/store | cut -f1) && sudo nix store optimise && after=$(du -sb /nix/store | cut -f1) && saved=$((before-after)) && echo Optimise freed: $(numfmt --to=iec-i --suffix=B $saved)";
       windows = "sudo --preserve-env=DISPLAY,WAYLAND_DISPLAY windows-vm";
+      restart-ap = "sudo systemctl restart hostapd.service";
     };
   };
 

@@ -52,7 +52,18 @@
                   "yandex.com",
                   "d-cd.net",
                   "kz",
-                  "ru"
+                  "ru",
+                  "youtube.com",
+                  "youtu.be",
+                  "ytimg.com",
+                  "yt.be",
+                  "googlevideo.com",
+                  "youtube-nocookie.com",
+                  "youtube-ui.l.google.com",
+                  "youtubeembedded.com",
+                  "youtubei.googleapis.com",
+                  "yt3.ggpht.com",
+                  "yt3.googleusercontent.com"
                 ],
                 "outboundTag": "direct"
               },

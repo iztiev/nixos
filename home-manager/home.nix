@@ -45,9 +45,11 @@
     discord
     stoat-desktop
     wowup-cf
+    filezilla
 
     # networking
     traceroute
+    dnsutils
 
     # Ofiice
     libreoffice-qt

@@ -20,6 +20,12 @@
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Disable disk swap (partition kept for future re-enable)
+  swapDevices = lib.mkForce [];
+
+  # RAM compression (zram) as lightweight swap alternative
+  zramSwap.enable = true;
+
   # Simagic force feedback wheel driver (Alpha EVO Pro)
   services.simagic-ff.enable = false;
 
@@ -119,6 +125,9 @@
 
   # ── Desktop Environment (KDE Plasma 6) ──
   services.kde.enable = true;
+
+  # ── MTP (Meta Quest, Android file transfer) ──
+  services.gvfs.enable = true;
 
   # ── Steam ──
   services.steam.enable = true;

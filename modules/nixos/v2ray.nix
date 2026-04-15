@@ -63,7 +63,16 @@
                   "youtubeembedded.com",
                   "youtubei.googleapis.com",
                   "yt3.ggpht.com",
-                  "yt3.googleusercontent.com"
+                  "yt3.googleusercontent.com",
+                  "vk.com",
+                  "vkusercontent.com",
+                  "vk.me",
+                  "vkuseraudio.net",
+                  "vkuservideo.net",
+                  "userapi.com",
+                  "vk-cdn.net",
+                  "vk.cc",
+                  "vkontakte.ru"
                 ],
                 "outboundTag": "direct"
               },

@@ -40,7 +40,7 @@
 
   # ── WiFi Hotspot ──
   services.wifi-hotspot = {
-    enable = true;
+    enable = false;
     ssid = "rhea-ap";
     passphraseFile = config.sops.secrets.wifi-passphrase.path;
     # wifiInterface = "wlan0";    # default

@@ -77,9 +77,9 @@
     initExtra = ''
       rhea-ap() {
         case "$1" in
-          start)   sudo systemctl start hostapd.service ;;
-          stop)    sudo systemctl stop hostapd.service ;;
-          restart) sudo systemctl restart hostapd.service ;;
+          start)   sudo nmcli device set wlan0 managed no  && sudo systemctl start hostapd.service ;;
+          stop)    sudo systemctl stop hostapd.service     && sudo nmcli device set wlan0 managed yes ;;
+          restart) sudo nmcli device set wlan0 managed no  && sudo systemctl restart hostapd.service ;;
           *)       echo "Usage: rhea-ap {start|stop|restart}" ;;
         esac
       }

@@ -40,5 +40,10 @@ Host 89.167.124.169
   IdentityFile ~/.ssh/id_dilcher
 Host 213.133.100.158
   IdentityFile ~/.ssh/id_dilcher
+Host 91.99.155.159 # (liquidland) Static websites for Dilcher GmbH
+  IdentityFile ~/.ssh/id_dilcher
+Host 91.99.155.159 # (liquidland) SFTP
+  IdentityFile ~/.ssh/id_dilcher
+  Port 23
 Host *
   ServerAliveInterval 100

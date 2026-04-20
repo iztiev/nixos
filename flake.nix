@@ -65,7 +65,7 @@
         inputs.sops-nix.nixosModules.sops
         inputs.ncalayer.nixosModules.default
         inputs.izosevka.nixosModules.default
-        { nixpkgs.overlays = [ inputs.stoat-desktop.overlays.default ]; }
+        # { nixpkgs.overlays = [ inputs.stoat-desktop.overlays.default ]; }  # temporarily disabled
 
         home-manager.nixosModules.home-manager
         {

@@ -207,6 +207,7 @@
     git
     wget
     curl
+    openssl
     nvidia-vaapi-driver # Hardware video acceleration
   ];
 

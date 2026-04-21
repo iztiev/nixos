@@ -23,11 +23,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1776657773,
-        "narHash": "sha256-GgExKCDspgASVM6sRH0VcVyixQznxuR4tjiAA7MfKxs=",
+        "lastModified": 1776744173,
+        "narHash": "sha256-9pZQWypgc0H1lgyuGmLqEL5IKVdHMw/NoO/iFcoSrW0=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "986236cd6fad0979233ae5e73456a365f79ff198",
+        "rev": "a803876f3cfc65f8858d413cef2b7d10d50a81d7",
         "type": "gitlab"
       },
       "original": {
@@ -100,11 +100,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776701552,
-        "narHash": "sha256-CCRzOEFg6JwCdZIR5dLD0ypah5/e2JQVuWQ/l3rYrPY=",
+        "lastModified": 1776721614,
+        "narHash": "sha256-zGuW7C4tsScib2560yE5VV6lY/MdRs30aU9cbg3RP+U=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c81775b640d4507339d127f5adb4105f6015edf2",
+        "rev": "c555a4a34a260493be5adb795c54e013c58f2d34",
         "type": "github"
       },
       "original": {
@@ -185,11 +185,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776656326,
-        "narHash": "sha256-cUPRTkwfunNVuPef4KCFqHaLvBjCbqma2hGtHT77YJM=",
+        "lastModified": 1776742110,
+        "narHash": "sha256-SSpIUNaxkvuKHP5oPlqVcDgV1u3i2/eLUjByedOUI8U=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "3dfd035bedf934bf8bd42ca1297db34a87e0c31d",
+        "rev": "e8e73f0c7070b006d784fe692cfc1c72366c0f09",
         "type": "github"
       },
       "original": {
@@ -287,8 +287,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "plasma-manager": "plasma-manager",
-        "sops-nix": "sops-nix",
-        "stoat-desktop": "stoat-desktop"
+        "sops-nix": "sops-nix"
       }
     },
     "rust-overlay": {
@@ -329,26 +328,6 @@
       "original": {
         "owner": "mic92",
         "repo": "sops-nix",
-        "type": "github"
-      }
-    },
-    "stoat-desktop": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1774115667,
-        "narHash": "sha256-gtxPSlCO+86kbSDQ6ACGtJnECz+8m+X63ED0xp12rHg=",
-        "owner": "iztiev",
-        "repo": "stoat-desktop",
-        "rev": "c6fe2db179539c38ca85be66352559d76595bfe3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "iztiev",
-        "repo": "stoat-desktop",
         "type": "github"
       }
     },

@@ -43,7 +43,7 @@
     slack
     telegram-desktop
     discord
-    # stoat-desktop  # temporarily disabled
+    # stoat-desktop
     wowup-cf
     filezilla
 

@@ -89,7 +89,7 @@
                 x = 0;
                 y = 0;
               };
-              priority = 2;
+              priority = 1;
               replicationSource = "";
             }
             {
@@ -99,7 +99,7 @@
                 x = 3840;
                 y = 0;
               };
-              priority = 1;
+              priority = 2;
               replicationSource = "";
             }
           ];

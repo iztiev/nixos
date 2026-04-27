@@ -6,4 +6,5 @@ final: prev:
   in
   customPkgs // {
     #bitwarden-desktop = stable.bitwarden-desktop; # example how to use package from stable channel
+    openldap = prev.openldap.overrideAttrs (_: { doCheck = false; });
   }

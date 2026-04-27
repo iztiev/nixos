@@ -44,9 +44,6 @@ Host 62.238.6.123 # AppArm0002
   IdentityFile ~/.ssh/id_dilcher
 Host 91.99.155.159 # (liquidland) Static websites for Dilcher GmbH
   IdentityFile ~/.ssh/id_dilcher
-Host 91.99.155.159 # (liquidland) SFTP
-  IdentityFile ~/.ssh/id_dilcher
-  Port 23
 Host localhost
   IdentityFile ~/.ssh/id_iztiev
 Host *

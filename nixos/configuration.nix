@@ -36,6 +36,7 @@
 
   # AMD CPU
   boot.kernelModules = [ "kvm-amd" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.amd.updateMicrocode = true;
 
   # ── WiFi Hotspot ──
@@ -87,14 +88,24 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # Disable suspend-on-idle to prevent audio devices from sleeping
+    # Prevent the speaker node from being suspended between keep-speakers-alive plays.
+    # suspend-node.lua explicitly checks session.suspend-timeout-seconds and skips
+    # suspension when it is 0. The wireplumber.profiles approach (hooks.node.suspend = disabled)
+    # does not reliably take effect via conf.d drop-ins in WirePlumber 0.5.x.
     wireplumber.configPackages = [
       (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-disable-suspension.conf" ''
-        wireplumber.profiles = {
-          main = {
-            hooks.node.suspend = disabled
+        monitor.alsa.rules = [
+          {
+            matches = [
+              { node.name = "alsa_output.pci-0000_74_00.6.analog-stereo" }
+            ]
+            actions = {
+              update-props = {
+                session.suspend-timeout-seconds = 0
+              }
+            }
           }
-        }
+        ]
       '')
     ];
     # Pin SoX (keep-speakers-alive) directly to the analog speaker sink,

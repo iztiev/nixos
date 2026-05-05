@@ -97,7 +97,7 @@
     Service = {
       Type = "oneshot";
       Environment = "PULSE_SINK=alsa_output.pci-0000_74_00.6.analog-stereo";
-      ExecStart = "${pkgs.sox}/bin/play -n -c1 synth 3 whitenoise band -n 19000 20 fade h 1 2 1 vol 0.1";
+      ExecStart = "${pkgs.sox}/bin/play -n -c1 synth 5 whitenoise band -n 19000 20 fade h 1 3 1 vol 0.2";
     };
   };
 
@@ -105,7 +105,7 @@
     Unit.Description = "Keep speakers alive timer";
     Timer = {
       OnBootSec = "1min";
-      OnUnitActiveSec = "9min";
+      OnUnitActiveSec = "4min";
     };
     Install.WantedBy = [ "timers.target" ];
   };

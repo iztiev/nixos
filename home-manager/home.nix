@@ -39,6 +39,7 @@
     chromium
     qbittorrent
     postman
+    keystore-explorer
     bitwarden-desktop
     slack
     telegram-desktop

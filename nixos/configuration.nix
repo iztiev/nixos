@@ -142,7 +142,7 @@
 
   # ── Steam ──
   services.steam.enable = true;
-  services.steam.leManUltimate = false;
+  services.steam.protonGE = true;
 
   # ── Flatpak ──
   services.flatpak.enable = false;

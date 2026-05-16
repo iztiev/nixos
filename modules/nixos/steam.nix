@@ -27,13 +27,7 @@ with lib;
     protonGE = mkOption {
       type = types.bool;
       default = true;
-      description = "Enable GE-Proton (GloriousEggroll's custom Proton build)";
-    };
-
-    leManUltimate = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable Le Mans Ultimate support (custom Proton build required)";
+      description = "Enable GE-Proton (GloriousEggroll's custom Proton build), including Protornup-QT and ProtonTricks";
     };
   };
 
@@ -60,16 +54,13 @@ with lib;
     environment.systemPackages = with pkgs;
       [
         steam-run   # Run non-Steam games in Steam runtime environment
-        lutris      # Open gaming platform for managing games from multiple sources
+        # lutris      # Open gaming platform for managing games from multiple sources. Disabled because it is shipped with defunct openldap v2.6.13
         gamescope   # Wayland micro-compositor for better fullscreen support
         mangohud    # Gaming performance overlay
       ]
-      # ── Le Mans Ultimate ──
-      # Requires custom Proton: GE-Proton10-25-LMU-hid_fixes
-      # Install: extract to ~/.steam/steam/compatibilitytools.d/
-      # Then select it in LMU's Steam compatibility settings
-      # Also set CEF Mode to 2 in LMU Settings.JSON to fix UI rendering
-      ++ optionals config.services.steam.leManUltimate [
+      # ── Proton GE ──
+      # Install Protonup-QT and ProtonTricks with proton-ge
+      ++ optionals config.services.steam.protonGE [
         protontricks  # Per-game Proton prefix management
         protonup-qt   # GUI for managing custom Proton builds
       ];

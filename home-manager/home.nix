@@ -44,16 +44,11 @@
     slack
     telegram-desktop
     discord
-    # stoat-desktop
-    wowup-cf
     filezilla
 
     # networking
     traceroute
     dnsutils
-
-    # MTP (Meta Quest, Android file transfer)
-    libmtp
 
     # Ofiice
     libreoffice-qt

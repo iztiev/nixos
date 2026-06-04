@@ -2,6 +2,9 @@
 {
   # ── Nix Settings ──
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10"
+  ];
   nixpkgs.overlays = [ (import ../overlays/default.nix { inherit inputs; system = "x86_64-linux"; }) ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   systemd.services.nix-daemon.environment = {

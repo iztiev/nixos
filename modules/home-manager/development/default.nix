@@ -14,6 +14,7 @@
 
   home.packages = with pkgs; [
     claude-code
+    gh
 
     # Build Tools
     gcc

@@ -33,6 +33,7 @@
     ripgrep
     fd
     unzip
+    jq
 
     # Internet
     remmina
@@ -60,6 +61,8 @@
 
     # Media
     yt-dlp
+
+    # songrec
   ];
 
   # ── Shell ──

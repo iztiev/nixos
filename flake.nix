@@ -46,6 +46,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-claude-code = {
+      url = "github:ryoppippi/nix-claude-code";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # stoat-desktop = {
     #   url = "github:iztiev/stoat-desktop";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -65,6 +70,7 @@
         inputs.sops-nix.nixosModules.sops
         inputs.ncalayer.nixosModules.default
         inputs.izosevka.nixosModules.default
+        { nixpkgs.overlays = [ inputs.nix-claude-code.overlays.default ]; }
         # { nixpkgs.overlays = [ inputs.stoat-desktop.overlays.default ]; }
 
         home-manager.nixosModules.home-manager

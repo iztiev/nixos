@@ -2,11 +2,11 @@
   options.development.vscodium.enable = lib.mkEnableOption "VSCodium editor";
 
   config = lib.mkIf config.development.vscodium.enable {
-    programs.vscode = {
+    programs.vscodium = {
       enable = true;
-      package = pkgs.vscodium;
       profiles.default.extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
+        anthropic.claude-code
       ] ++ (with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.open-vsx; [
         clemenspeters.format-json
         wholroyd.jinja

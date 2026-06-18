@@ -2,14 +2,14 @@
   imports = [
     ./go.nix
     ./python.nix
-    ./vscode.nix
+    ./vscodium.nix
     ./web.nix
   ];
 
   # Enable all by default
   development.go.enable = true;
   development.python.enable = true;
-  development.vscode.enable = true;
+  development.vscodium.enable = true;
   development.web.enable = true;
 
   home.packages = with pkgs; [

@@ -46,6 +46,9 @@
               {
                 "type": "field",
                 "domain": [
+                  "anthropic.com",
+                  "claude.ai",
+                  "claude.com",
                   "iztiev.dev",
                   "drive.iztiev.dev",
                   "vr.iztiev.dev",

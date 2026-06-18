@@ -1,13 +1,14 @@
 { config, lib, pkgs, inputs, ... }: {
-  options.development.vscode.enable = lib.mkEnableOption "VSCode editor";
+  options.development.vscodium.enable = lib.mkEnableOption "VSCodium editor";
 
-  config = lib.mkIf config.development.vscode.enable {
+  config = lib.mkIf config.development.vscodium.enable {
     programs.vscode = {
       enable = true;
+      package = pkgs.vscodium;
       profiles.default.extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
-      ] ++ (with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
-        mohsen1.prettify-json
+      ] ++ (with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.open-vsx; [
+        clemenspeters.format-json
         wholroyd.jinja
       ]);
       profiles.default.userSettings = {

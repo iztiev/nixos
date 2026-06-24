@@ -215,6 +215,21 @@
     extraGroups = [ "networkmanager" "wheel" "input" "video" ];
   };
 
+  # ── SSH (local network access) ──
+  services.openssh = {
+    enable = true;
+    # openFirewall defaults to true, so port 22 is opened automatically.
+    settings = {
+      PasswordAuthentication = false;   # key-based auth only
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+  users.users.iztiev.openssh.authorizedKeys.keys = [
+    # Replace with the public key of each machine you connect FROM:
+    # "ssh-ed25519 AAAA... you@laptop"
+  ];
+
   # ── System Packages ──
   environment.systemPackages = with pkgs; [
     vim

@@ -60,13 +60,6 @@
   # Disable WiFi by blacklisting common WiFi kernel modules
   boot.blacklistedKernelModules = [ "iwlwifi" "iwlmvm" "ath9k" "ath10k" "rtw88" "mt76" ];
 
-  # ── ZeroTier ──
-  services.zerotierone.enable = true;
-  systemd.services.zerotierone = {
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-  };
-
   # ── Tailscale ──
   services.tailscale.enable = true;
 
@@ -227,7 +220,7 @@
   };
   users.users.iztiev.openssh.authorizedKeys.keys = [
     # Replace with the public key of each machine you connect FROM:
-    # "ssh-ed25519 AAAA... you@laptop"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG/GmkPGMDAeqQngxfc0VHFSoicM5wjX50MUJ1FC+10M thea"
   ];
 
   # ── System Packages ──
